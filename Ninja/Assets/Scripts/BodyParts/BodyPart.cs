@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class BodyPart : MonoBehaviour
@@ -10,8 +9,6 @@ public class BodyPart : MonoBehaviour
         Lost
     }
 
-    public Action<BodyPartState> OnStateChanged;
-
     public BodyPartState state;
 
     IBodyPartPicker _locker;
@@ -19,6 +16,7 @@ public class BodyPart : MonoBehaviour
     public void SetLocker(IBodyPartPicker locker)
     {
         _locker = locker;
+        _locker.Pick(this);
     }
 
     public bool IsPlayerInteractive()
@@ -48,18 +46,18 @@ public class BodyPart : MonoBehaviour
                 state = BodyPartState.Lost;
                 break;
         }
-
-        OnStateChanged?.Invoke(newState);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Grave"))
         {
+            _locker?.Unpick(this);
             SetBodyPartState(BodyPartState.InsideGrave);
         }
         else if (other.gameObject.CompareTag("OutOfBorder"))
         {
+            _locker?.Unpick(this);
             SetBodyPartState(BodyPartState.Lost);
         }
         else

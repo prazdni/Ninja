@@ -10,10 +10,17 @@ public class MainCharacterBodyInteractionManager : MonoBehaviour, IBodyPartPicke
         {
             var bodyPart = other.GetComponent<BodyPart>();
             if (bodyPart.IsPlayerInteractive())
-            {
                 bodyPart.SetLocker(this);
-                bodyPart.transform.SetParent(_parent);
-            }
         }
+    }
+
+    public void Pick(BodyPart bodyPart)
+    {
+        bodyPart.transform.SetParent(_parent);
+    }
+
+    public void Unpick(BodyPart bodyPart)
+    {
+        bodyPart.transform.SetParent(null);
     }
 }
