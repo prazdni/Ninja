@@ -39,6 +39,11 @@ public class Enemy : MonoBehaviour
                 FindTarget();
             }
         }
+
+        if (enemyState == EnemyState.GoneAway) 
+        {
+            enemySpawner.KillEnemy(this);
+        }
     }
 
     public void Kill()

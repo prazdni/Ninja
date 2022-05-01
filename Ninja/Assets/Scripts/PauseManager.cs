@@ -5,7 +5,7 @@ public class PauseManager : MonoBehaviour
 {
     public bool isPause => _isPause;
 
-    [SerializeField] TimerManager _timerManager;
+    [SerializeField] EndGameManager _endGameManager;
     [SerializeField] PauseMenu _pauseMenu;
 
     bool _isPause;
@@ -14,17 +14,19 @@ public class PauseManager : MonoBehaviour
     {
         ClosePauseMenu();
 
-        _timerManager.OnTimerEnded += OpenEndGameMenu;
+        _endGameManager.OnTimerEnded += OpenEndGameMenu;
+        _endGameManager.OnAllBodyPartsLost += OpenEndGameMenu;
     }
 
     void OnDestroy()
     {
-        _timerManager.OnTimerEnded -= OpenEndGameMenu;
+        _endGameManager.OnTimerEnded -= OpenEndGameMenu;
+        _endGameManager.OnAllBodyPartsLost -= OpenEndGameMenu;
     }
 
     void Update()
     {
-        if (_timerManager.isTimerEnded)
+        if (_endGameManager.isTimerEnded)
             return;
 
         if (Input.GetKeyDown(KeyCode.Escape) && !_isPause)
@@ -54,7 +56,7 @@ public class PauseManager : MonoBehaviour
 
     public void ClosePauseMenu()
     {
-        if (_timerManager.isTimerEnded)
+        if (_endGameManager.isTimerEnded)
             return;
 
         StartTime();
