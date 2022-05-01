@@ -11,17 +11,6 @@ public class EnemySpawner : MonoBehaviour
 
     public List<Transform> spawnPoints;
 
-    private void Awake()
-    {
-        for (int i = 0; i < initialEmemiesCount; i++)
-        {
-            InstantiateEnemy(spawnPoints[0]);
-        }
-
-        foreach (Enemy e in enemies)
-            e.gameObject.SetActive(false);
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))

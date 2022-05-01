@@ -279,7 +279,7 @@ PrefabInstance:
       objectReference: {fileID: 1153998010}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: initialEmemiesCount
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: spawnPoints.Array.size
