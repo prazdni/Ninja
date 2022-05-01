@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public BodyPartsManager bodyPartsManager;
     public List<Enemy> enemies;
     public GameObject enemyPrefab;
     public int initialEmemiesCount;
 
-    public List<Transform> SpawnPoints;
+    public List<Transform> spawnPoints;
 
     private void Awake()
     {
         for (int i = 0; i < initialEmemiesCount; i++)
         {
-            InstantiateEnemy(Vector3.zero);
+            InstantiateEnemy(spawnPoints[0]);
         }
 
         foreach (Enemy e in enemies)
@@ -46,17 +47,17 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        int randomSpawnPointIndex = Random.Range(0, SpawnPoints.Count);
+        int randomSpawnPointIndex = Random.Range(0, spawnPoints.Count);
 
         if (availibleEnemyIndex != -1)
         {
             
-            enemies[availibleEnemyIndex].gameObject.transform.position = SpawnPoints[randomSpawnPointIndex].position;
+            enemies[availibleEnemyIndex].gameObject.transform.position = spawnPoints[randomSpawnPointIndex].position;
             enemies[availibleEnemyIndex].gameObject.SetActive(true);
         }
         else
         {
-            InstantiateEnemy(SpawnPoints[randomSpawnPointIndex].position);
+            InstantiateEnemy(spawnPoints[randomSpawnPointIndex]);
         }
     }
 
@@ -66,10 +67,17 @@ public class EnemySpawner : MonoBehaviour
         enemy.transform.position = Vector3.zero;
     }
 
-    public void InstantiateEnemy(Vector3 instantiatePosition) 
+    public void InstantiateEnemy(Transform spawnPoint) 
     {
         GameObject newEnemy = Instantiate(enemyPrefab);
-        newEnemy.transform.position = instantiatePosition;
+        Enemy enemy = newEnemy.GetComponent<Enemy>();
+
+        enemy.SetSpawner(this);
+        enemy.SetInitialSpawnPoint(spawnPoint);
+
+        newEnemy.GetComponent<Enemy>().SetSpawner(this);
+        newEnemy.transform.position = spawnPoint.position;
+
         enemies.Add(newEnemy.GetComponent<Enemy>());
     }
 }
