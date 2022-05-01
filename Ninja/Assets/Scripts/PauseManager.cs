@@ -1,50 +1,73 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject PauseMenuPrefab;
-    private bool isPause = false;
+    public bool isPause => _isPause;
 
-    private void Awake()
+    [SerializeField] TimerManager _timerManager;
+    [SerializeField] PauseMenu _pauseMenu;
+
+    bool _isPause;
+
+    void Awake()
     {
         ClosePauseMenu();
+
+        _timerManager.OnTimerEnded += OpenEndGameMenu;
     }
 
-    private void Update()
+    void OnDestroy()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isPause)
+        _timerManager.OnTimerEnded -= OpenEndGameMenu;
+    }
+
+    void Update()
+    {
+        if (_timerManager.isTimerEnded)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !_isPause)
         {
             OpenPauseMenu();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isPause)
+        else if (Input.GetKeyDown(KeyCode.Escape) && _isPause)
         {
             ClosePauseMenu();
         }
     }
 
-    public void OpenPauseMenu()
+    void OpenEndGameMenu()
     {
         StopTime();
-        PauseMenuPrefab.SetActive(true);
-        isPause = true;
+        _pauseMenu.gameObject.SetActive(true);
+        _pauseMenu.SetState(PauseMenu.State.EndGame);
+    }
+
+    void OpenPauseMenu()
+    {
+        StopTime();
+        _pauseMenu.gameObject.SetActive(true);
+        _pauseMenu.SetState(PauseMenu.State.Pause);
+        _isPause = true;
     }
 
     public void ClosePauseMenu()
     {
+        if (_timerManager.isTimerEnded)
+            return;
+
         StartTime();
-        PauseMenuPrefab.SetActive(false);
-        isPause = false;
+        _pauseMenu.gameObject.SetActive(false);
+        _isPause = false;
     }
 
-    private void StopTime()
+    void StopTime()
     {
         Time.timeScale = 0f;
     }
-    private void StartTime()
+
+    void StartTime()
     {
         Time.timeScale = 1f;
     }

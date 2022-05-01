@@ -4,7 +4,7 @@ using UnityEngine;
 public class SurikenManager : MonoBehaviour
 {
     [SerializeField] Camera _camera;
-    [SerializeField] GameObject _suriken;
+    [SerializeField] SurikenController _surikenController;
     [SerializeField] CharacterController _characterController;
     [SerializeField] float _speed;
 
@@ -16,7 +16,7 @@ public class SurikenManager : MonoBehaviour
 
     void Awake()
     {
-        _suriken.SetActive(_isSurikenToTarget);
+        _surikenController.gameObject.SetActive(_isSurikenToTarget);
     }
 
     void Update()
@@ -32,10 +32,10 @@ public class SurikenManager : MonoBehaviour
         {
             _needStartThrowSuriken = false;
             _isSurikenToTarget = true;
-            _suriken.transform.position = _characterController.transform.position + _characterController.transform.forward;
-            _suriken.SetActive(_isSurikenToTarget);
+            _surikenController.transform.position = _characterController.transform.position + _characterController.transform.forward;
+            _surikenController.gameObject.SetActive(_isSurikenToTarget);
             _endPointPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-            _distance = ((Vector2)_suriken.transform.position - _endPointPosition).magnitude;
+            _distance = ((Vector2)_surikenController.transform.position - _endPointPosition).magnitude;
         }
 
         if (_isSurikenToTarget)
@@ -47,9 +47,9 @@ public class SurikenManager : MonoBehaviour
 
     void MoveSuriken(Vector2 endPointPosition, float delta, Func<float, float> formula, Action action)
     {
-        float distance = formula((endPointPosition - (Vector2) _suriken.transform.position).magnitude / _distance);
-        _suriken.transform.position = Vector2.MoveTowards(_suriken.transform.position, endPointPosition, distance * _speed * Time.deltaTime);
-        if (((Vector2)_suriken.transform.position - endPointPosition).magnitude < delta)
+        float distance = formula((endPointPosition - (Vector2) _surikenController.transform.position).magnitude / _distance);
+        _surikenController.transform.position = Vector2.MoveTowards(_surikenController.transform.position, endPointPosition, distance * _speed * Time.deltaTime);
+        if (((Vector2)_surikenController.transform.position - endPointPosition).magnitude < delta)
             action.Invoke();
     }
 
@@ -57,13 +57,13 @@ public class SurikenManager : MonoBehaviour
     {
         _isSurikenToTarget = false;
         _isSurikenFromTarget = true;
-        _distance = (_suriken.transform.position - _characterController.transform.position).magnitude;
+        _distance = (_surikenController.transform.position - _characterController.transform.position).magnitude;
     }
 
     void SetSurikenUnabled()
     {
         _isSurikenFromTarget = false;
-        _suriken.SetActive(false);
+        _surikenController.gameObject.SetActive(false);
     }
 
     float ToTargetFormula(float x)

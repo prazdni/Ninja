@@ -8,6 +8,7 @@ TagManager:
   - MainCharacter
   - Grave
   - OutOfBorder
+  - Enemy
   layers:
   - Default
   - TransparentFX
