@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < initialEmemiesCount; i++)
         {
-            InstantiateEnemy(Vector3.zero);
+            InstantiateEnemy(spawnPoints[0]);
         }
 
         foreach (Enemy e in enemies)
@@ -57,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            InstantiateEnemy(spawnPoints[randomSpawnPointIndex].position);
+            InstantiateEnemy(spawnPoints[randomSpawnPointIndex]);
         }
     }
 
@@ -67,10 +67,17 @@ public class EnemySpawner : MonoBehaviour
         enemy.transform.position = Vector3.zero;
     }
 
-    public void InstantiateEnemy(Vector3 instantiatePosition) 
+    public void InstantiateEnemy(Transform spawnPoint) 
     {
         GameObject newEnemy = Instantiate(enemyPrefab);
-        newEnemy.transform.position = instantiatePosition;
+        Enemy enemy = newEnemy.GetComponent<Enemy>();
+
+        enemy.SetSpawner(this);
+        enemy.SetInitialSpawnPoint(spawnPoint);
+
+        newEnemy.GetComponent<Enemy>().SetSpawner(this);
+        newEnemy.transform.position = spawnPoint.position;
+
         enemies.Add(newEnemy.GetComponent<Enemy>());
     }
 }
