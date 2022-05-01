@@ -11,21 +11,38 @@ public class EnemySpawner : MonoBehaviour
 
     public List<Transform> spawnPoints;
 
-    void Awake()
+    [SerializeField] float _duration;
+    float _currentDuration;
+    bool _timerEnded;
+
+
+    private void Awake()
     {
         for (int i = 0; i < initialEmemiesCount; i++)
         {
-            InstantiateEnemy(spawnPoints[0]);
+            int randomSpawnPointIndex = Random.Range(0, spawnPoints.Count);
+            InstantiateEnemy(spawnPoints[randomSpawnPointIndex]);
         }
 
-        foreach (Enemy e in enemies)
-            e.gameObject.SetActive(false);
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.gameObject.SetActive(false);
+        }
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (_currentDuration < _duration)
+            _currentDuration += Time.deltaTime;
+        else
+            _timerEnded = true;
+
+        if (_timerEnded)
+        {
             SpawnEnemy();
+            _timerEnded = false;
+            _currentDuration = 0f;
+        }
     }
 
     public void SpawnEnemy()
@@ -44,7 +61,6 @@ public class EnemySpawner : MonoBehaviour
 
         if (availibleEnemyIndex != -1)
         {
-
             enemies[availibleEnemyIndex].gameObject.transform.position = spawnPoints[randomSpawnPointIndex].position;
             enemies[availibleEnemyIndex].gameObject.SetActive(true);
         }

@@ -49,6 +49,11 @@ public class Enemy : MonoBehaviour
         {
             MoveToSpawn();
         }
+
+        if (enemyState == EnemyState.GoneAway) 
+        {
+            enemySpawner.KillEnemy(this);
+        }
     }
 
     public void Reset()
