@@ -8,8 +8,8 @@ public class Enemy : MonoBehaviour
     public float moveSpeed;
 
     [SerializeField] EnemyBodyInteractionManager _bodyInteractionManager;
-    private EnemySpawner enemySpawner;
-    private Transform initialSpawnPoint;
+    EnemySpawner enemySpawner;
+    Transform initialSpawnPoint;
 
     public EnemyState enemyState;
     public enum EnemyState
@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
         GoneAway
     }
 
-    private void Update()
+    void Update()
     {
         if (targetBodyPart != null)
         {
@@ -49,6 +49,13 @@ public class Enemy : MonoBehaviour
         {
             MoveToSpawn();
         }
+    }
+
+    public void Reset()
+    {
+        targetBodyPart = null;
+        enemyState = EnemyState.StandingStill;
+        _bodyInteractionManager.Unpick();
     }
 
     public void SetSpawner(EnemySpawner spawner)

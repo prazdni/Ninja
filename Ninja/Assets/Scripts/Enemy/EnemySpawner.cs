@@ -22,26 +22,19 @@ public class EnemySpawner : MonoBehaviour
             e.gameObject.SetActive(false);
     }
 
-    private void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
             SpawnEnemy();
-
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
-        {
-            int i = Random.Range(0, enemies.Count);
-            if (enemies[i].gameObject.activeSelf)
-                KillEnemy(enemies[i]);
-        }
     }
 
-    public void SpawnEnemy() 
+    public void SpawnEnemy()
     {
         int availibleEnemyIndex = -1;
 
         for (int i = 0; i < enemies.Count; i++)
         {
-            if (!enemies[i].gameObject.activeSelf) 
+            if (!enemies[i].gameObject.activeSelf)
             {
                 availibleEnemyIndex = i;
             }
@@ -51,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (availibleEnemyIndex != -1)
         {
-            
+
             enemies[availibleEnemyIndex].gameObject.transform.position = spawnPoints[randomSpawnPointIndex].position;
             enemies[availibleEnemyIndex].gameObject.SetActive(true);
         }
@@ -61,13 +54,14 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public void KillEnemy(Enemy enemy) 
+    public void KillEnemy(Enemy enemy)
     {
+        enemy.Reset();
         enemy.gameObject.SetActive(false);
         enemy.transform.position = Vector3.zero;
     }
 
-    public void InstantiateEnemy(Transform spawnPoint) 
+    public void InstantiateEnemy(Transform spawnPoint)
     {
         GameObject newEnemy = Instantiate(enemyPrefab);
         Enemy enemy = newEnemy.GetComponent<Enemy>();

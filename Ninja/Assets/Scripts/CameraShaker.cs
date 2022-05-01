@@ -20,6 +20,6 @@ public class CameraShaker : MonoBehaviour
 
     void OnEnemyHit()
     {
-        _camera.DOShakePosition(1, 1f);
+        _camera.DOShakePosition(0.25f, 0.25f);
     }
 }

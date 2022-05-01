@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBodyInteractionManager : MonoBehaviour, IBodyPartPicker
@@ -22,7 +20,8 @@ public class EnemyBodyInteractionManager : MonoBehaviour, IBodyPartPicker
 
     public void Unpick()
     {
-        Unpick(_bodyPart);
+        if (_bodyPart != null)
+            Unpick(_bodyPart);
     }
 
     public void Pick(BodyPart bodyPart)
