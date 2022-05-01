@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public BodyPartsManager bodyPartsManager;
     public List<Enemy> enemies;
     public GameObject enemyPrefab;
     public int initialEmemiesCount;
 
-    public List<Transform> SpawnPoints;
+    public List<Transform> spawnPoints;
 
     private void Awake()
     {
@@ -46,17 +47,17 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        int randomSpawnPointIndex = Random.Range(0, SpawnPoints.Count);
+        int randomSpawnPointIndex = Random.Range(0, spawnPoints.Count);
 
         if (availibleEnemyIndex != -1)
         {
             
-            enemies[availibleEnemyIndex].gameObject.transform.position = SpawnPoints[randomSpawnPointIndex].position;
+            enemies[availibleEnemyIndex].gameObject.transform.position = spawnPoints[randomSpawnPointIndex].position;
             enemies[availibleEnemyIndex].gameObject.SetActive(true);
         }
         else
         {
-            InstantiateEnemy(SpawnPoints[randomSpawnPointIndex].position);
+            InstantiateEnemy(spawnPoints[randomSpawnPointIndex].position);
         }
     }
 
