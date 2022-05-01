@@ -38,17 +38,17 @@ public class Enemy : MonoBehaviour
             {
                 FindTarget();
             }
-        }
 
-        if (enemyState == EnemyState.GoneAway) 
-        {
-            enemySpawner.KillEnemy(this);
+            if (_enemyState == EnemyState.GoneAway)
+            {
+                _enemySpawner.KillEnemy(this);
+            }
         }
     }
 
     public void Kill()
     {
-        _bodyInteractionManager.Unpick(true, _targetBodyPart);
+        _bodyInteractionManager.Unpick(_targetBodyPart);
         _enemyState = EnemyState.StandingStill;
         _targetBodyPart = null;
     }
@@ -92,7 +92,8 @@ public class Enemy : MonoBehaviour
         if ((transform.position - _initialSpawnPoint.position).magnitude < 0.1f)
         {
             _enemyState = EnemyState.GoneAway;
-            _bodyInteractionManager.Unpick(false, _targetBodyPart);
+            _targetBodyPart.SetState(BodyPart.State.Lost);
+            _bodyInteractionManager.Unpick(_targetBodyPart);
         }
     }
 }
