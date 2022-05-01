@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetBodyPart: {fileID: 0}
   moveSpeed: 5
+  _bodyInteractionManager: {fileID: 315289148182025829}
   enemyState: 0
 --- !u!114 &315289148182025829
 MonoBehaviour:

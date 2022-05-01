@@ -7,16 +7,17 @@ public class Enemy : MonoBehaviour
     public BodyPart targetBodyPart;
     public float moveSpeed;
 
+    [SerializeField] EnemyBodyInteractionManager _bodyInteractionManager;
     private EnemySpawner enemySpawner;
     private Transform initialSpawnPoint;
-    private EnemyBodyInteractionManager bodyInteractionManager;
 
     public EnemyState enemyState;
     public enum EnemyState
     {
         StandingStill,
         GoingToBodyPart,
-        GoingAway
+        GoingAway,
+        GoneAway
     }
 
     private void Update()
@@ -34,7 +35,7 @@ public class Enemy : MonoBehaviour
                 enemyState = EnemyState.GoingAway;
             }
         }
-   
+
         if (enemyState == EnemyState.StandingStill)
         {
             FindTarget();
@@ -50,7 +51,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void SetSpawner(EnemySpawner spawner) 
+    public void SetSpawner(EnemySpawner spawner)
     {
         enemySpawner = spawner;
     }
@@ -60,7 +61,7 @@ public class Enemy : MonoBehaviour
         initialSpawnPoint = spawnPoint;
     }
 
-    public bool IsTargetBodyPartSet() 
+    public bool IsTargetBodyPartSet()
     {
         return targetBodyPart != null;
     }
@@ -75,7 +76,7 @@ public class Enemy : MonoBehaviour
                 enemyState = EnemyState.GoingToBodyPart;
                 break;
             }
-            else 
+            else
             {
                 enemyState = EnemyState.StandingStill;
             }
@@ -87,8 +88,13 @@ public class Enemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, bodyPart.gameObject.transform.position, moveSpeed * Time.deltaTime);
     }
 
-    private void MoveToSpawn() 
+    private void MoveToSpawn()
     {
         transform.position = Vector2.MoveTowards(transform.position, initialSpawnPoint.position, moveSpeed * Time.deltaTime);
+        if ((transform.position - initialSpawnPoint.position).magnitude < 0.1f)
+        {
+            enemyState = EnemyState.GoneAway;
+            _bodyInteractionManager.Unpick();
+        }
     }
 }

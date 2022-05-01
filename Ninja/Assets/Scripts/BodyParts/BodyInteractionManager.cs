@@ -2,18 +2,26 @@
 
 public class BodyInteractionManager : MonoBehaviour, IBodyPartPicker
 {
-    public bool isInInteraction => _isInInteraction;
+    public bool isInInteraction => _bodyPart != null;
 
     [SerializeField] Transform _parent;
-    bool _isInInteraction;
+    BodyPart _bodyPart;
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("BodyPart"))
+        if (_bodyPart != null)
         {
-            var bodyPart = other.GetComponent<BodyPart>();
-            if (bodyPart.IsPlayerInteractive())
-                bodyPart.SetLocker(this);
+            if (other.CompareTag("Grave"))
+                Unpick(_bodyPart);
+        }
+        else
+        {
+            if (other.CompareTag("BodyPart"))
+            {
+                var bodyPart = other.GetComponent<BodyPart>();
+                if (bodyPart.IsPlayerInteractive())
+                    Pick(bodyPart);
+            }
         }
     }
 
@@ -21,12 +29,15 @@ public class BodyInteractionManager : MonoBehaviour, IBodyPartPicker
     {
         bodyPart.transform.SetPositionAndRotation(_parent.position + _parent.up, _parent.rotation);
         bodyPart.transform.SetParent(_parent);
-        _isInInteraction = true;
+        bodyPart.SetLocker(this);
+        _bodyPart = bodyPart;
     }
 
     public void Unpick(BodyPart bodyPart)
     {
         bodyPart.transform.SetParent(null);
-        _isInInteraction = false;
+        bodyPart.SetState(BodyPart.State.InsideGrave);
+        bodyPart.SetLocker(null);
+        _bodyPart = null;
     }
 }
