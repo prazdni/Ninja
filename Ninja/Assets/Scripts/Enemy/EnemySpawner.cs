@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
 
     public List<Transform> spawnPoints;
 
-    private void Awake()
+    void Awake()
     {
         for (int i = 0; i < initialEmemiesCount; i++)
         {
