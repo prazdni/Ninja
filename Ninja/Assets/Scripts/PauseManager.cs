@@ -20,13 +20,13 @@ public class PauseManager : MonoBehaviour
         {
             OpenPauseMenu();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isPause) 
+        else if (Input.GetKeyDown(KeyCode.Escape) && isPause)
         {
             ClosePauseMenu();
         }
     }
 
-    public void OpenPauseMenu() 
+    public void OpenPauseMenu()
     {
         StopTime();
         PauseMenuPrefab.SetActive(true);
@@ -40,16 +40,16 @@ public class PauseManager : MonoBehaviour
         isPause = false;
     }
 
-    private void StopTime() 
+    private void StopTime()
     {
         Time.timeScale = 0f;
     }
-    private void StartTime() 
+    private void StartTime()
     {
         Time.timeScale = 1f;
     }
 
-    public void OpenMainScene() 
+    public void OpenMainScene()
     {
         SceneManager.LoadScene("MainScene");
     }
