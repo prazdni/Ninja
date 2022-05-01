@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class BodyPart : MonoBehaviour
@@ -11,37 +10,61 @@ public class BodyPart : MonoBehaviour
         Lost
     }
 
+    public Action<BodyPartState> OnStateChanged;
+
     public BodyPartState state;
 
-    public void SetBodyPartState(string newState) 
+    IBodyPartPicker _locker;
+
+    public void SetLocker(IBodyPartPicker locker)
     {
+        _locker = locker;
+    }
+
+    public bool IsPlayerInteractive()
+    {
+        return state == BodyPartState.OutsideGrave && _locker == null;
+    }
+
+    public bool IsEnemyInteractive()
+    {
+        return state != BodyPartState.Lost && _locker == null;
+    }
+
+    void SetBodyPartState(BodyPartState newState)
+    {
+        if (state == newState)
+            return;
+
         switch (newState)
         {
-            case "InsideGrave":
+            case BodyPartState.InsideGrave:
                 state = BodyPartState.InsideGrave;
                 break;
-            case "OutsideGrave":
+            case BodyPartState.OutsideGrave:
                 state = BodyPartState.OutsideGrave;
                 break;
-            case "Lost":
+            case BodyPartState.Lost:
                 state = BodyPartState.Lost;
                 break;
         }
+
+        OnStateChanged?.Invoke(newState);
     }
 
-    private void OnTriggerStay(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Grave")
+        if (other.gameObject.CompareTag("Grave"))
         {
-            SetBodyPartState("InsideGrave");
+            SetBodyPartState(BodyPartState.InsideGrave);
         }
-        else if (other.gameObject.tag == "OutOfBorder")
+        else if (other.gameObject.CompareTag("OutOfBorder"))
         {
-            SetBodyPartState("Lost");
+            SetBodyPartState(BodyPartState.Lost);
         }
-        else 
+        else
         {
-            SetBodyPartState("OutsideGrave");
+            SetBodyPartState(BodyPartState.OutsideGrave);
         }
     }
 }
