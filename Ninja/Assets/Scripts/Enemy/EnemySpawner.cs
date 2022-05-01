@@ -56,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void KillEnemy(Enemy enemy)
     {
-        enemy.Reset();
+        enemy.Kill();
         enemy.gameObject.SetActive(false);
         enemy.transform.position = Vector3.zero;
     }

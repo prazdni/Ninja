@@ -1,17 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public BodyPart targetBodyPart;
-    public float moveSpeed;
-
-    [SerializeField] EnemyBodyInteractionManager _bodyInteractionManager;
-    EnemySpawner enemySpawner;
-    Transform initialSpawnPoint;
-
-    public EnemyState enemyState;
     public enum EnemyState
     {
         StandingStill,
@@ -20,88 +10,84 @@ public class Enemy : MonoBehaviour
         GoneAway
     }
 
+    public float moveSpeed;
+
+    [SerializeField] EnemyBodyInteractionManager _bodyInteractionManager;
+    EnemySpawner _enemySpawner;
+    Transform _initialSpawnPoint;
+    BodyPart _targetBodyPart;
+    EnemyState _enemyState;
+
     void Update()
     {
-        if (targetBodyPart != null)
+        if (_targetBodyPart != null)
         {
-            if (enemyState == EnemyState.GoingToBodyPart && !targetBodyPart.IsEnemyInteractive())
+            if (_enemyState == EnemyState.GoingToBodyPart)
             {
-                targetBodyPart = null;
-                enemyState = EnemyState.StandingStill;
+                MoveToTarget(_targetBodyPart);
             }
 
-            if (gameObject.transform.childCount > 0)
+            if (_enemyState == EnemyState.GoingAway)
             {
-                enemyState = EnemyState.GoingAway;
+                MoveToSpawn();
             }
         }
-
-        if (enemyState == EnemyState.StandingStill)
+        else
         {
-            FindTarget();
-        }
-
-        if (enemyState == EnemyState.GoingToBodyPart)
-        {
-            MoveToTarget(targetBodyPart);
-        }
-        else if (enemyState == EnemyState.GoingAway)
-        {
-            MoveToSpawn();
+            if (_enemyState == EnemyState.StandingStill)
+            {
+                FindTarget();
+            }
         }
     }
 
-    public void Reset()
+    public void Kill()
     {
-        targetBodyPart = null;
-        enemyState = EnemyState.StandingStill;
-        _bodyInteractionManager.Unpick();
+        _bodyInteractionManager.Unpick(true, _targetBodyPart);
+        _enemyState = EnemyState.StandingStill;
+        _targetBodyPart = null;
     }
 
     public void SetSpawner(EnemySpawner spawner)
     {
-        enemySpawner = spawner;
+        _enemySpawner = spawner;
     }
 
     public void SetInitialSpawnPoint(Transform spawnPoint)
     {
-        initialSpawnPoint = spawnPoint;
+        _initialSpawnPoint = spawnPoint;
     }
 
-    public bool IsTargetBodyPartSet()
+    void FindTarget()
     {
-        return targetBodyPart != null;
-    }
-
-    private void FindTarget()
-    {
-        foreach (BodyPart bodyPart in enemySpawner.bodyPartsManager.bodyParts)
+        foreach (BodyPart bodyPart in _enemySpawner.bodyPartsManager.bodyParts)
         {
             if (bodyPart.IsEnemyInteractive())
             {
-                targetBodyPart = bodyPart;
-                enemyState = EnemyState.GoingToBodyPart;
+                _targetBodyPart = bodyPart;
+                _enemyState = EnemyState.GoingToBodyPart;
                 break;
-            }
-            else
-            {
-                enemyState = EnemyState.StandingStill;
             }
         }
     }
 
-    private void MoveToTarget(BodyPart bodyPart)
+    void MoveToTarget(BodyPart bodyPart)
     {
         transform.position = Vector2.MoveTowards(transform.position, bodyPart.gameObject.transform.position, moveSpeed * Time.deltaTime);
+        if ((_targetBodyPart.transform.position - transform.position).magnitude < 0.1f)
+        {
+            _bodyInteractionManager.Pick(_targetBodyPart);
+            _enemyState = EnemyState.GoingAway;
+        }
     }
 
-    private void MoveToSpawn()
+    void MoveToSpawn()
     {
-        transform.position = Vector2.MoveTowards(transform.position, initialSpawnPoint.position, moveSpeed * Time.deltaTime);
-        if ((transform.position - initialSpawnPoint.position).magnitude < 0.1f)
+        transform.position = Vector2.MoveTowards(transform.position, _initialSpawnPoint.position, moveSpeed * Time.deltaTime);
+        if ((transform.position - _initialSpawnPoint.position).magnitude < 0.1f)
         {
-            enemyState = EnemyState.GoneAway;
-            _bodyInteractionManager.Unpick();
+            _enemyState = EnemyState.GoneAway;
+            _bodyInteractionManager.Unpick(false, _targetBodyPart);
         }
     }
 }
