@@ -78,11 +78,19 @@ public class Enemy : MonoBehaviour
 
     void MoveToTarget(BodyPart bodyPart)
     {
-        transform.position = Vector2.MoveTowards(transform.position, bodyPart.gameObject.transform.position, moveSpeed * Time.deltaTime);
-        if ((_targetBodyPart.transform.position - transform.position).magnitude < 0.1f)
+        if (bodyPart.IsEnemyInteractive())
         {
-            _bodyInteractionManager.Pick(_targetBodyPart);
-            _enemyState = EnemyState.GoingAway;
+            transform.position = Vector2.MoveTowards(transform.position, bodyPart.gameObject.transform.position, moveSpeed * Time.deltaTime);
+            if ((_targetBodyPart.transform.position - transform.position).magnitude < 0.1f)
+            {
+                _bodyInteractionManager.Pick(_targetBodyPart);
+                _enemyState = EnemyState.GoingAway;
+            }
+        }
+        else
+        {
+            bodyPart.RefreshState();
+            _targetBodyPart = null;
         }
     }
 

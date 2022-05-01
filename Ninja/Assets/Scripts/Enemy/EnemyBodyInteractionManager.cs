@@ -16,6 +16,7 @@ public class EnemyBodyInteractionManager : MonoBehaviour, IBodyPartPicker
         {
             bodyPart.SetLocker(null);
             bodyPart.transform.SetParent(null);
+            bodyPart.RefreshState();
         }
     }
 }
