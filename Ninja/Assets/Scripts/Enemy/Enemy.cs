@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public float moveSpeed;
 
     [SerializeField] EnemyBodyInteractionManager _bodyInteractionManager;
+    [SerializeField] EnemyMovementController _enemyMovementController;
     EnemySpawner _enemySpawner;
     Transform _initialSpawnPoint;
     BodyPart _targetBodyPart;
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour
 
     public void Kill()
     {
+        _enemyMovementController.UnsetMovement();
         _bodyInteractionManager.Unpick(_targetBodyPart);
         _enemyState = EnemyState.StandingStill;
         _targetBodyPart = null;
@@ -57,11 +59,17 @@ public class Enemy : MonoBehaviour
     public void SetSpawner(EnemySpawner spawner)
     {
         _enemySpawner = spawner;
+        _bodyInteractionManager.SetEnemySpawner(_enemySpawner);
     }
 
     public void SetInitialSpawnPoint(Transform spawnPoint)
     {
         _initialSpawnPoint = spawnPoint;
+    }
+
+    public void SpawnEnemy()
+    {
+        _enemyMovementController.SetMovement();
     }
 
     void SetTargetBodyPart(BodyPart bodyPart)

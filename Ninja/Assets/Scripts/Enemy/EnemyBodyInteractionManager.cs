@@ -2,11 +2,22 @@ using UnityEngine;
 
 public class EnemyBodyInteractionManager : MonoBehaviour, IBodyPartPicker
 {
-    [SerializeField] Transform _parent;
+    [SerializeField] Enemy _enemy;
+    EnemySpawner _enemySpawner;
+
+    public void SetEnemySpawner(EnemySpawner enemySpawner)
+    {
+        _enemySpawner = enemySpawner;
+    }
+
+    public void Kill()
+    {
+        _enemySpawner.KillEnemy(_enemy);
+    }
 
     public void Pick(BodyPart bodyPart)
     {
-        bodyPart.transform.SetParent(_parent);
+        bodyPart.transform.SetParent(transform);
         bodyPart.SetLocker(this);
     }
 

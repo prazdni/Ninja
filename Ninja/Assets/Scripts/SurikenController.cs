@@ -5,16 +5,15 @@ public class SurikenController : MonoBehaviour
 {
     public Action OnEnemyHit;
 
-    [SerializeField] EnemySpawner _enemySpawner;
     [SerializeField] PoofManager _poofManager;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
-            var enemy = other.GetComponent<Enemy>();
+            var enemy = other.GetComponent<EnemyBodyInteractionManager>();
             _poofManager.AddPoof(enemy.transform.position);
-            _enemySpawner.KillEnemy(enemy);
+            enemy.Kill();
             OnEnemyHit?.Invoke();
         }
     }

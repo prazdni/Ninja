@@ -58,15 +58,19 @@ public class EnemySpawner : MonoBehaviour
 
         int randomSpawnPointIndex = Random.Range(0, spawnPoints.Count);
 
+        Enemy enemy = null;
         if (availibleEnemyIndex != -1)
         {
+            enemy = enemies[availibleEnemyIndex];
             enemies[availibleEnemyIndex].gameObject.transform.position = spawnPoints[randomSpawnPointIndex].position;
             enemies[availibleEnemyIndex].gameObject.SetActive(true);
         }
         else
         {
-            InstantiateEnemy(spawnPoints[randomSpawnPointIndex]);
+            enemy = InstantiateEnemy(spawnPoints[randomSpawnPointIndex]);
         }
+
+        enemy.SpawnEnemy();
     }
 
     public void KillEnemy(Enemy enemy)
@@ -76,7 +80,7 @@ public class EnemySpawner : MonoBehaviour
         enemy.transform.position = Vector3.zero;
     }
 
-    public void InstantiateEnemy(Transform spawnPoint)
+    public Enemy InstantiateEnemy(Transform spawnPoint)
     {
         GameObject newEnemy = Instantiate(enemyPrefab);
         Enemy enemy = newEnemy.GetComponent<Enemy>();
@@ -88,5 +92,7 @@ public class EnemySpawner : MonoBehaviour
         newEnemy.transform.position = spawnPoint.position;
 
         enemies.Add(newEnemy.GetComponent<Enemy>());
+
+        return enemy;
     }
 }
