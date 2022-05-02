@@ -466,11 +466,7 @@ PrefabInstance:
       objectReference: {fileID: 7105148810976520199}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: _enemiesSpeedMax
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
-      propertyPath: _enemiesSpeedMin
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: bodyPartsManager
@@ -478,19 +474,15 @@ PrefabInstance:
       objectReference: {fileID: 1153998010}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: _enemiesToSpawnMax
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
-      propertyPath: _enemiesToSpawnMin
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: initialEmemiesCount
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: _durationBetweenSpawns
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: spawnPoints.Array.size
@@ -554,19 +546,27 @@ PrefabInstance:
       objectReference: {fileID: 1198784796}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: difficultyRaiseTimes.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: difficultyRaiseTimes.Array.data[0]
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: difficultyRaiseTimes.Array.data[1]
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: difficultyRaiseTimes.Array.data[2]
-      value: 45
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
+      propertyPath: difficultyRaiseTimes.Array.data[3]
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
+      propertyPath: difficultyRaiseTimes.Array.data[4]
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3463158214176872826, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: m_Name
@@ -616,7 +616,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -690,18 +689,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4a1d22ebfef47db8abb2a2db64da640, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &626127827 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4583015314979676211, guid: 7b1f5148694e09a49a98e2d768f0bf8a, type: 3}
