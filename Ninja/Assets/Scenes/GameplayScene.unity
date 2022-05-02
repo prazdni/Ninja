@@ -368,12 +368,28 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
+      propertyPath: _endGameManager
+      value: 
+      objectReference: {fileID: 7105148810976520199}
+    - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: bodyPartsManager
       value: 
       objectReference: {fileID: 1153998010}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
+      propertyPath: _enemiesToSpawnMax
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
+      propertyPath: _enemiesToSpawnMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: initialEmemiesCount
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
+      propertyPath: _durationBetweenSpawns
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: spawnPoints.Array.size
@@ -403,6 +419,22 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[5]
       value: 
       objectReference: {fileID: 450329520}
+    - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
+      propertyPath: difficultyRaiseTimes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
+      propertyPath: difficultyRaiseTimes.Array.data[0]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
+      propertyPath: difficultyRaiseTimes.Array.data[1]
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
+      propertyPath: difficultyRaiseTimes.Array.data[2]
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 3463158214176872826, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
@@ -537,7 +569,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a1d22ebfef47db8abb2a2db64da640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _surikenManager: {fileID: 1712979619}
 --- !u!1 &626127827 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4583015314979676211, guid: 7b1f5148694e09a49a98e2d768f0bf8a, type: 3}
@@ -1292,6 +1323,14 @@ PrefabInstance:
     - target: {fileID: 178523637508891929, guid: e7d0d96036739f248ba6e4bdb2995d3a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OpenMainScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1308298691304509076, guid: e7d0d96036739f248ba6e4bdb2995d3a, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187994695526215686, guid: e7d0d96036739f248ba6e4bdb2995d3a, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7d0d96036739f248ba6e4bdb2995d3a, type: 3}
@@ -3211,3 +3250,4 @@ MonoBehaviour:
   _bodyPartsManager: {fileID: 1153998010}
   _image: {fileID: 1338312273}
   _duration: 60
+  currentDuration: 0

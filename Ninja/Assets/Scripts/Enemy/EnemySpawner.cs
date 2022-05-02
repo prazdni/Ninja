@@ -9,14 +9,25 @@ public class EnemySpawner : MonoBehaviour
     public int initialEmemiesCount;
 
     public List<Transform> spawnPoints;
+    public List<float> difficultyRaiseTimes;
 
-    [SerializeField] float _duration;
+    int _currentDifficultyIndex;
+
+    [SerializeField] float _durationBetweenSpawns;
+    [SerializeField] EndGameManager _endGameManager;
+    [SerializeField] int _enemiesToSpawnMin;
+    [SerializeField] int _enemiesToSpawnMax;
+
     float _currentDuration;
     bool _timerEnded;
+    int _lastSpawnPointIndex;
 
+    int _enemiesToSpawn;
 
     private void Awake()
     {
+        _currentDifficultyIndex = 0;
+
         for (int i = 0; i < initialEmemiesCount; i++)
         {
             int randomSpawnPointIndex = Random.Range(0, spawnPoints.Count);
@@ -31,14 +42,21 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (_currentDuration < _duration)
+        TryRaiseDifficulty();
+
+        if (_currentDuration < _durationBetweenSpawns)
             _currentDuration += Time.deltaTime;
         else
             _timerEnded = true;
 
         if (_timerEnded)
         {
-            SpawnEnemy();
+            _enemiesToSpawn = Random.Range(_enemiesToSpawnMin, _enemiesToSpawnMax+1);
+
+            for (int i = 0; i < _enemiesToSpawn; i++)
+            {
+                SpawnEnemy();
+            }
             _timerEnded = false;
             _currentDuration = 0f;
         }
@@ -58,6 +76,18 @@ public class EnemySpawner : MonoBehaviour
 
         int randomSpawnPointIndex = Random.Range(0, spawnPoints.Count);
 
+        if (randomSpawnPointIndex == _lastSpawnPointIndex) 
+        {
+            if (randomSpawnPointIndex == spawnPoints.Count-1)
+            {
+                randomSpawnPointIndex--;
+            }
+            else
+            {
+                randomSpawnPointIndex++;
+            }
+        }
+
         if (availibleEnemyIndex != -1)
         {
             enemies[availibleEnemyIndex].gameObject.transform.position = spawnPoints[randomSpawnPointIndex].position;
@@ -67,6 +97,8 @@ public class EnemySpawner : MonoBehaviour
         {
             InstantiateEnemy(spawnPoints[randomSpawnPointIndex]);
         }
+
+        _lastSpawnPointIndex = randomSpawnPointIndex;
     }
 
     public void KillEnemy(Enemy enemy)
@@ -88,5 +120,36 @@ public class EnemySpawner : MonoBehaviour
         newEnemy.transform.position = spawnPoint.position;
 
         enemies.Add(newEnemy.GetComponent<Enemy>());
+    }
+
+    private void TryRaiseDifficulty() 
+    {
+        if (_currentDifficultyIndex < difficultyRaiseTimes.Count) 
+        {
+            if (_endGameManager.currentDuration >= difficultyRaiseTimes[_currentDifficultyIndex])
+            {
+                _currentDifficultyIndex++;
+
+                switch (_currentDifficultyIndex)
+                {
+                    case 1:
+                        RaiseDifficulty(-0.5f, 0, 1);
+                        break;
+                    case 2:
+                        RaiseDifficulty(-0.5f, 1, 1);
+                        break;
+                    case 3:
+                        RaiseDifficulty(-0.5f, 1, 0);
+                        break;
+                }
+            }
+        }
+    }
+
+    private void RaiseDifficulty(float durationBetweenSpawnsAdd, int enemiesToSpawnMinAdd, int enemiesToSpawnMaxAdd) 
+    {
+        _durationBetweenSpawns += durationBetweenSpawnsAdd;
+        _enemiesToSpawnMin += enemiesToSpawnMinAdd;
+        _enemiesToSpawnMax += enemiesToSpawnMaxAdd;
     }
 }
