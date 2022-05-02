@@ -4,7 +4,6 @@ public class BodyInteractionManager : MonoBehaviour, IBodyPartPicker
 {
     public bool isInInteraction => _bodyPart != null;
 
-    [SerializeField] Grave _grave;
     [SerializeField] Transform _parent;
     BodyPart _bodyPart;
 
@@ -13,15 +12,17 @@ public class BodyInteractionManager : MonoBehaviour, IBodyPartPicker
         if (_bodyPart == null)
             return;
 
-        if ((transform.position - _grave.transform.position).magnitude < 1.5f)
+        if (_bodyPart.IsBodyPartInGrave())
         {
-            _grave.ReturnToGrave(_bodyPart);
             Unpick(_bodyPart);
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (_bodyPart != null)
+            return;
+
         if (other.CompareTag("BodyPart"))
         {
             var bodyPart = other.GetComponent<BodyPart>();

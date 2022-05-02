@@ -10,6 +10,9 @@ public class BodyPartsManager : MonoBehaviour
     void Awake()
     {
         foreach (BodyPart bodyPart in bodyParts)
+        {
+            bodyPart.SetGrave(_grave);
             _grave.ReturnToGrave(bodyPart);
+        }
     }
 }

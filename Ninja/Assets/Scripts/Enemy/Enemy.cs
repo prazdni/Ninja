@@ -64,6 +64,12 @@ public class Enemy : MonoBehaviour
         _initialSpawnPoint = spawnPoint;
     }
 
+    void SetTargetBodyPart(BodyPart bodyPart)
+    {
+        _targetBodyPart = bodyPart;
+        _enemyState = _targetBodyPart == null ? EnemyState.StandingStill : EnemyState.GoingToBodyPart;
+    }
+
     void FindTarget()
     {
         List<BodyPart> shuffledBodyParts = _enemySpawner.bodyPartsManager.bodyParts;
@@ -72,8 +78,7 @@ public class Enemy : MonoBehaviour
         {
             if (bodyPart.IsEnemyInteractive())
             {
-                _targetBodyPart = bodyPart;
-                _enemyState = EnemyState.GoingToBodyPart;
+                SetTargetBodyPart(bodyPart);
                 break;
             }
         }
@@ -92,7 +97,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            _targetBodyPart = null;
+            SetTargetBodyPart(null);
         }
     }
 

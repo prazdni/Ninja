@@ -25,6 +25,7 @@ public class BodyPart : MonoBehaviour
     [SerializeField] Part _part;
     Collider2D _collider2D;
     IBodyPartPicker _locker;
+    Grave _grave;
 
     void Awake()
     {
@@ -39,6 +40,11 @@ public class BodyPart : MonoBehaviour
             RefreshState();
     }
 
+    public void SetGrave(Grave grave)
+    {
+        _grave = grave;
+    }
+
     public bool IsPlayerInteractive()
     {
         return state == State.OutsideGrave && _locker == null;
@@ -49,41 +55,42 @@ public class BodyPart : MonoBehaviour
         return state != State.Lost && _locker == null;
     }
 
+    public bool IsBodyPartInGrave()
+    {
+        return (transform.position - _grave.transform.position).magnitude < 1.5f;
+    }
+
     void RefreshState()
     {
         var contacts = new Collider2D[10];
         Physics2D.GetContacts(_collider2D, contacts);
-        bool isBodyPartInGrave = false;
+        bool isBodyPartInGrave = IsBodyPartInGrave();
+        if (isBodyPartInGrave)
+        {
+            SetState(State.InsideGrave);
+            return;
+        }
+
         bool isBodyPartLost = false;
         for (int i = 0; i < contacts.Length; i++)
         {
             Collider2D contact = contacts[i];
             if (contact != null)
             {
-                if (contact.CompareTag("Grave"))
-                    isBodyPartInGrave = true;
-
                 if (contact.CompareTag("Lost"))
                     isBodyPartLost = true;
             }
         }
 
-        if (isBodyPartInGrave)
-            SetState(State.InsideGrave);
-        else if (isBodyPartLost)
-            SetState(State.Lost);
-        else
-            SetState(State.OutsideGrave);
+        SetState(isBodyPartLost ? State.Lost : State.OutsideGrave);
     }
 
     void SetState(State newState)
     {
-        if (state == newState)
-            return;
-
         switch (newState)
         {
             case State.InsideGrave:
+                _grave.ReturnToGrave(this);
                 state = State.InsideGrave;
                 break;
             case State.OutsideGrave:
