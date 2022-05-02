@@ -3,6 +3,7 @@
 public class MovementManager : MonoBehaviour
 {
     [SerializeField] float _speed;
+    [SerializeField] Animator _animator;
 
     Camera _camera;
     Vector2 _newCharacterPosition;
@@ -28,7 +29,7 @@ public class MovementManager : MonoBehaviour
             _newCharacterPosition += Vector2.right * horizontalAxis;
 
         _needMoveTowards = needChangeVerticalPosition || needChangeHorizontalPosition;
-
+        _animator.SetFloat("Run", Mathf.Abs(verticalAxis) + Mathf.Abs(horizontalAxis));
     }
 
     void Update()
