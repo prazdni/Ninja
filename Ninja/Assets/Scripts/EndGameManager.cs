@@ -11,7 +11,7 @@ public class EndGameManager : MonoBehaviour
     [SerializeField] PauseManager _pauseManager;
     [SerializeField] BodyPartsManager _bodyPartsManager;
     [SerializeField] Image _image;
-    [SerializeField] float _duration;
+    public float duration;
 
     public float currentDuration;
     bool _timerEnded;
@@ -25,15 +25,14 @@ public class EndGameManager : MonoBehaviour
         if (_pauseManager.isPause)
             return;
 
-        if (currentDuration < _duration)
+        if (currentDuration < duration)
         {
             currentDuration += Time.deltaTime;
-            _image.fillAmount = currentDuration / _duration;
+            _image.fillAmount = currentDuration / duration;
         }
         else
         {
             _timerEnded = true;
-
         }
 
         if (_timerEnded && !_timerActionInvoked)
