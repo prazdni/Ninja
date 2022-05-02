@@ -89,7 +89,6 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            bodyPart.RefreshState();
             _targetBodyPart = null;
         }
     }
@@ -100,7 +99,6 @@ public class Enemy : MonoBehaviour
         if ((transform.position - _initialSpawnPoint.position).magnitude < 0.1f)
         {
             _enemyState = EnemyState.GoneAway;
-            _targetBodyPart.SetState(BodyPart.State.Lost);
             _bodyInteractionManager.Unpick(_targetBodyPart);
         }
     }

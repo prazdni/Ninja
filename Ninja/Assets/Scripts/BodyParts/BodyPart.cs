@@ -23,6 +23,9 @@ public class BodyPart : MonoBehaviour
     public void SetLocker(IBodyPartPicker locker)
     {
         _locker = locker;
+
+        if (_locker == null)
+            RefreshState();
     }
 
     public bool IsPlayerInteractive()
@@ -40,6 +43,7 @@ public class BodyPart : MonoBehaviour
         var contacts = new Collider2D[10];
         Physics2D.GetContacts(_collider2D, contacts);
         bool isBodyPartInGrave = false;
+        bool isBodyPartLost = false;
         for (int i = 0; i < contacts.Length; i++)
         {
             Collider2D contact = contacts[i];
@@ -47,10 +51,13 @@ public class BodyPart : MonoBehaviour
             {
                 if (contact.CompareTag("Grave"))
                     isBodyPartInGrave = true;
+
+                if (contact.CompareTag("Lost"))
+                    isBodyPartLost = true;
             }
         }
 
-        SetState(isBodyPartInGrave ? State.InsideGrave : State.OutsideGrave);
+        SetState(isBodyPartInGrave ? State.InsideGrave : (isBodyPartLost ? State.Lost : State.OutsideGrave));
     }
 
     public void SetState(State newState)

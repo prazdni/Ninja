@@ -9,6 +9,7 @@ TagManager:
   - Grave
   - OutOfBorder
   - Enemy
+  - Lost
   layers:
   - Default
   - TransparentFX
