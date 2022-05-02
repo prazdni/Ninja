@@ -2,11 +2,16 @@
 
 public class MovementManager : MonoBehaviour
 {
-    [SerializeField] Camera _camera;
     [SerializeField] float _speed;
 
+    Camera _camera;
     Vector2 _newCharacterPosition;
     bool _needMoveTowards;
+
+    void Awake()
+    {
+        _camera = Camera.main;
+    }
 
     void FixedUpdate()
     {

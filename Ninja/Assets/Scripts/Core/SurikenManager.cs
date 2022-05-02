@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class SurikenManager : MonoBehaviour
 {
-    [SerializeField] Camera _camera;
     [SerializeField] SurikenController _surikenController;
     [SerializeField] CharacterController _characterController;
     [SerializeField] float _speed;
     [SerializeField] float _maxDistance;
 
+    Camera _camera;
     Vector2 _endPointPosition;
     float _distance;
     bool _needStartThrowSuriken;
@@ -17,6 +17,7 @@ public class SurikenManager : MonoBehaviour
 
     void Awake()
     {
+        _camera = Camera.main;
         _surikenController.gameObject.SetActive(_isSurikenToTarget);
     }
 

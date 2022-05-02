@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -96,12 +97,14 @@ public class Enemy : MonoBehaviour
     {
         if (bodyPart.IsEnemyInteractive())
         {
-            transform.position = Vector2.MoveTowards(transform.position, bodyPart.gameObject.transform.position, moveSpeed * Time.deltaTime);
-            if ((_targetBodyPart.transform.position - transform.position).magnitude < 0.1f)
+            transform.position = Vector2.MoveTowards(transform.position, bodyPart.transform.position, moveSpeed * Time.deltaTime);
+            if ((bodyPart.transform.position - transform.position).magnitude < 0.1f)
             {
                 _bodyInteractionManager.Pick(_targetBodyPart);
                 _enemyState = EnemyState.GoingAway;
             }
+
+            LookAt(bodyPart.transform.position);
         }
         else
         {
@@ -112,6 +115,7 @@ public class Enemy : MonoBehaviour
     void MoveToSpawn()
     {
         transform.position = Vector2.MoveTowards(transform.position, _initialSpawnPoint.position, moveSpeed * Time.deltaTime);
+        LookAt(_initialSpawnPoint.position);
         if ((transform.position - _initialSpawnPoint.position).magnitude < 0.1f)
         {
             _enemyState = EnemyState.GoneAway;
@@ -119,7 +123,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Shuffle<T>(List<T> list)
+    void Shuffle<T>(List<T> list)
     {
         var rand = new System.Random();
         int n = list.Count;
@@ -128,5 +132,14 @@ public class Enemy : MonoBehaviour
             int k = rand.Next(n + 1);
             (list[k], list[n]) = (list[n], list[k]);
         }
+    }
+
+    void LookAt(Vector2 position)
+    {
+        Vector2 diff = position - (Vector2) transform.position;
+        diff.Normalize();
+
+        float rotation = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotation - 90);
     }
 }
