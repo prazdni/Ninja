@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poofManager: {fileID: 0}
+  _rotationSpeed: 0
 --- !u!50 &4004679107593058296
 Rigidbody2D:
   serializedVersion: 4
@@ -167,7 +168,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 0fe3edac44f81f14192bf53c25d63b14, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
