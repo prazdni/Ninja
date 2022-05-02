@@ -7,6 +7,7 @@ public class SurikenManager : MonoBehaviour
     [SerializeField] SurikenController _surikenController;
     [SerializeField] CharacterController _characterController;
     [SerializeField] float _speed;
+    [SerializeField] float _maxDistance;
 
     Vector2 _endPointPosition;
     float _distance;
@@ -35,6 +36,8 @@ public class SurikenManager : MonoBehaviour
             _surikenController.transform.position = _characterController.transform.position + _characterController.transform.forward;
             _surikenController.gameObject.SetActive(_isSurikenToTarget);
             _endPointPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = (_endPointPosition - (Vector2) _characterController.transform.position).normalized * _maxDistance;
+            _endPointPosition = (Vector2) _characterController.transform.position + direction;
             _distance = ((Vector2)_surikenController.transform.position - _endPointPosition).magnitude;
         }
 
