@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f4a40ddc0235346a522bdb6ced1ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 1.25
   _bodyInteractionManager: {fileID: 2206971733317658846}
   _enemyMovementController: {fileID: 3245555605905706815}
 --- !u!1 &1501072277028594967
