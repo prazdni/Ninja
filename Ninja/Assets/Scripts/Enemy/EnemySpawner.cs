@@ -33,12 +33,9 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < initialEmemiesCount; i++)
         {
             int randomSpawnPointIndex = Random.Range(0, spawnPoints.Count);
-            InstantiateEnemy(spawnPoints[randomSpawnPointIndex]);
-        }
-
-        foreach (Enemy enemy in enemies)
-        {
+            Enemy enemy = InstantiateEnemy(spawnPoints[randomSpawnPointIndex]);
             enemy.gameObject.SetActive(false);
+            SpawnEnemy();
         }
     }
 
@@ -78,7 +75,7 @@ public class EnemySpawner : MonoBehaviour
 
         int randomSpawnPointIndex = Random.Range(0, spawnPoints.Count);
 
-        if (randomSpawnPointIndex == _lastSpawnPointIndex) 
+        if (randomSpawnPointIndex == _lastSpawnPointIndex)
         {
             if (randomSpawnPointIndex == spawnPoints.Count-1)
             {
@@ -132,9 +129,9 @@ public class EnemySpawner : MonoBehaviour
         return enemy;
     }
 
-    private void TryRaiseDifficulty() 
+    private void TryRaiseDifficulty()
     {
-        if (_currentDifficultyIndex < difficultyRaiseTimes.Count) 
+        if (_currentDifficultyIndex < difficultyRaiseTimes.Count)
         {
             if (_endGameManager.currentDuration >= difficultyRaiseTimes[_currentDifficultyIndex])
             {
@@ -143,20 +140,38 @@ public class EnemySpawner : MonoBehaviour
                 switch (_currentDifficultyIndex)
                 {
                     case 1:
-                        RaiseDifficulty(-0.5f, 0, 0, 0f, 1f);
+                        RaiseDifficulty(-0.25f, 0, 0, 0f, 0f);
                         break;
                     case 2:
-                        RaiseDifficulty(-0.5f, 0, 0, 0f, 1f);
+                        RaiseDifficulty(-0.25f, 1, 0, 0f, 0f);
                         break;
                     case 3:
-                        RaiseDifficulty(-0.5f, 0, 0, 0f, 1f);
+                        RaiseDifficulty(-0.25f, 0, 1, 0f, 0f);
+                        break;
+                    case 4:
+                        RaiseDifficulty(-0.25f, 0, 0, 1f, 0f);
+                        break;
+                    case 5:
+                        RaiseDifficulty(-0.25f, 0, 1, 0f, 1f);
+                        break;
+                    case 6:
+                        RaiseDifficulty(-0.25f, 1, 1, 0f, 0f);
+                        break;
+                    case 7:
+                        RaiseDifficulty(-0.25f, 0, 1, 1f, 0f);
+                        break;
+                    case 8:
+                        RaiseDifficulty(-0.25f, 0, 0, 1f, 1f);
+                        break;
+                    case 9:
+                        RaiseDifficulty(-0.25f, 1, 1, 1f, 0f);
                         break;
                 }
             }
         }
     }
 
-    private void RaiseDifficulty(float durationBetweenSpawnsAdd, int enemiesToSpawnMinAdd, int enemiesToSpawnMaxAdd, float enemiesSpeedMinAdd, float enemiesSpeedMaxAdd) 
+    private void RaiseDifficulty(float durationBetweenSpawnsAdd, int enemiesToSpawnMinAdd, int enemiesToSpawnMaxAdd, float enemiesSpeedMinAdd, float enemiesSpeedMaxAdd)
     {
         _durationBetweenSpawns += durationBetweenSpawnsAdd;
         _enemiesToSpawnMin += enemiesToSpawnMinAdd;

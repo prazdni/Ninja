@@ -44,7 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d14f8b8275bc8d44a0b2c76c9e16ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyPartsManager: {fileID: 0}
   enemies: []
   enemyPrefab: {fileID: 1486366190682369490, guid: f4877750373a16c40aa630cd3a4b8a47, type: 3}
   initialEmemiesCount: 0
-  SpawnPoints: []
+  spawnPoints: []
+  difficultyRaiseTimes: []
+  _durationBetweenSpawns: 2
+  _endGameManager: {fileID: 0}
+  _enemiesToSpawnMin: 1
+  _enemiesToSpawnMax: 2
+  _enemiesSpeedMin: 1
+  _enemiesSpeedMax: 5
