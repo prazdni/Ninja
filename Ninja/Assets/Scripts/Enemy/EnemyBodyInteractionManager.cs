@@ -21,10 +21,11 @@ public class EnemyBodyInteractionManager : MonoBehaviour, IBodyPartPicker
         bodyPart.SetLocker(this);
     }
 
-    public void Unpick(BodyPart bodyPart)
+    public void Unpick(BodyPart bodyPart, bool killed)
     {
         if (bodyPart != null)
         {
+            bodyPart.SetState(killed ? BodyPart.State.Reachable : BodyPart.State.Lost);
             bodyPart.SetLocker(null);
             bodyPart.transform.SetParent(null);
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 public class SurikenManager : MonoBehaviour
 {
     [SerializeField] SurikenController _surikenController;
-    [SerializeField] CharacterController _characterController;
+    [SerializeField] Transform _mainCharacter;
     [SerializeField] float _speed;
     [SerializeField] float _maxDistance;
 
@@ -23,22 +23,19 @@ public class SurikenManager : MonoBehaviour
 
     void Update()
     {
-        if (!_characterController.isInInteraction)
-        {
-            if (!_isSurikenToTarget && !_isSurikenFromTarget)
-                if (Input.GetMouseButtonDown(0))
-                    _needStartThrowSuriken = true;
-        }
+        if (!_isSurikenToTarget && !_isSurikenFromTarget)
+            if (Input.GetMouseButtonDown(0))
+                _needStartThrowSuriken = true;
 
         if (_needStartThrowSuriken)
         {
             _needStartThrowSuriken = false;
             _isSurikenToTarget = true;
-            _surikenController.transform.position = _characterController.transform.position + _characterController.transform.forward;
+            _surikenController.transform.position = _mainCharacter.position + _mainCharacter.forward;
             _surikenController.gameObject.SetActive(_isSurikenToTarget);
             _endPointPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = (_endPointPosition - (Vector2) _characterController.transform.position).normalized * _maxDistance;
-            _endPointPosition = (Vector2) _characterController.transform.position + direction;
+            Vector2 direction = (_endPointPosition - (Vector2) _mainCharacter.position).normalized * _maxDistance;
+            _endPointPosition = (Vector2) _mainCharacter.position + direction;
             _distance = ((Vector2)_surikenController.transform.position - _endPointPosition).magnitude;
         }
 
@@ -46,7 +43,7 @@ public class SurikenManager : MonoBehaviour
             MoveSuriken(_endPointPosition, 0.1f, ToTargetFormula, SwitchSurikenTargets);
 
         if (_isSurikenFromTarget)
-            MoveSuriken(_characterController.transform.position, 1.0f, FromTargetFormula, SetSurikenUnabled);
+            MoveSuriken(_mainCharacter.position, 1.0f, FromTargetFormula, SetSurikenUnabled);
     }
 
     void MoveSuriken(Vector2 endPointPosition, float delta, Func<float, float> formula, Action action)
@@ -61,7 +58,7 @@ public class SurikenManager : MonoBehaviour
     {
         _isSurikenToTarget = false;
         _isSurikenFromTarget = true;
-        _distance = (_surikenController.transform.position - _characterController.transform.position).magnitude;
+        _distance = (_surikenController.transform.position - _mainCharacter.position).magnitude;
     }
 
     void SetSurikenUnabled()

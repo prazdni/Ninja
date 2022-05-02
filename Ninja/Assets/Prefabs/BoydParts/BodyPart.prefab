@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4583015314979676208}
   - component: {fileID: 4583015314979676209}
   - component: {fileID: 4583015314979676210}
-  - component: {fileID: 2617156217070221428}
+  - component: {fileID: 8890441659671240821}
   m_Layer: 0
   m_Name: BodyPart
   m_TagString: BodyPart
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   _part: 0
---- !u!61 &2617156217070221428
+--- !u!61 &8890441659671240821
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,5 +124,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.28, y: 0.29}
   m_EdgeRadius: 0
