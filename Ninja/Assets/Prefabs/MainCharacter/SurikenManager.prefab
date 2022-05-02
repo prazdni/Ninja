@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 0}
-  _suriken: {fileID: 0}
-  _mainCharacter: {fileID: 0}
+  _surikenController: {fileID: 0}
+  _characterController: {fileID: 0}
   _speed: 10
+  _maxDistance: 5
