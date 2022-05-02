@@ -140,19 +140,31 @@ public class EnemySpawner : MonoBehaviour
                 switch (_currentDifficultyIndex)
                 {
                     case 1:
-                        RaiseDifficulty(-0.5f, 0, 0, 0f, 1f);
+                        RaiseDifficulty(-0.25f, 0, 0, 0f, 0f);
                         break;
                     case 2:
-                        RaiseDifficulty(-0.5f, 0, 0, 0f, 1f);
+                        RaiseDifficulty(-0.25f, 1, 0, 0f, 0f);
                         break;
                     case 3:
-                        RaiseDifficulty(-0.5f, 0, 0, 0f, 1f);
+                        RaiseDifficulty(-0.25f, 0, 1, 0f, 0f);
                         break;
                     case 4:
-                        RaiseDifficulty(-0.5f, 0, 0, 0f, 1f);
+                        RaiseDifficulty(-0.25f, 0, 0, 1f, 0f);
                         break;
                     case 5:
-                        RaiseDifficulty(-0.5f, 0, 0, 0f, 1f);
+                        RaiseDifficulty(-0.25f, 0, 1, 0f, 1f);
+                        break;
+                    case 6:
+                        RaiseDifficulty(-0.25f, 1, 1, 0f, 0f);
+                        break;
+                    case 7:
+                        RaiseDifficulty(-0.25f, 0, 1, 1f, 0f);
+                        break;
+                    case 8:
+                        RaiseDifficulty(-0.25f, 0, 0, 1f, 1f);
+                        break;
+                    case 9:
+                        RaiseDifficulty(-0.25f, 1, 1, 1f, 0f);
                         break;
                 }
             }

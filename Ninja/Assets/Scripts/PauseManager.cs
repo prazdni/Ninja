@@ -7,6 +7,7 @@ public class PauseManager : MonoBehaviour
 
     [SerializeField] EndGameManager _endGameManager;
     [SerializeField] PauseMenu _pauseMenu;
+    [SerializeField] BodyPartsManager _bodyPartsManager;
 
     bool _isPause;
 
@@ -44,6 +45,7 @@ public class PauseManager : MonoBehaviour
         StopTime();
         _pauseMenu.gameObject.SetActive(true);
         _pauseMenu.SetState(PauseMenu.State.EndGame);
+        RefreshBodyPartsScreen();
     }
 
     void OpenPauseMenu()
@@ -51,6 +53,7 @@ public class PauseManager : MonoBehaviour
         StopTime();
         _pauseMenu.gameObject.SetActive(true);
         _pauseMenu.SetState(PauseMenu.State.Pause);
+        RefreshBodyPartsScreen();
         _isPause = true;
     }
 
@@ -77,5 +80,35 @@ public class PauseManager : MonoBehaviour
     public void OpenMainScene()
     {
         SceneManager.LoadScene("MainScene");
+    }
+
+    private void RefreshBodyPartsScreen() 
+    {
+        foreach (BodyPart bodyPart in _bodyPartsManager.bodyParts) 
+        {
+            switch (bodyPart.part)
+            {
+                case BodyPart.Part.Head:
+                    _pauseMenu.bodyPartsImages[0].gameObject.SetActive(bodyPart.state != BodyPart.State.Lost);
+                    break;
+                case BodyPart.Part.Body:
+                    _pauseMenu.bodyPartsImages[1].gameObject.SetActive(bodyPart.state != BodyPart.State.Lost);
+                    break;
+                case BodyPart.Part.LeftHand:
+                    _pauseMenu.bodyPartsImages[2].gameObject.SetActive(bodyPart.state != BodyPart.State.Lost);
+                    break;
+                case BodyPart.Part.RightHand:
+                    _pauseMenu.bodyPartsImages[3].gameObject.SetActive(bodyPart.state != BodyPart.State.Lost);
+                    break;
+                case BodyPart.Part.LeftLeg:
+                    _pauseMenu.bodyPartsImages[4].gameObject.SetActive(bodyPart.state != BodyPart.State.Lost);
+                    break;
+                case BodyPart.Part.RightLeg:
+                    _pauseMenu.bodyPartsImages[5].gameObject.SetActive(bodyPart.state != BodyPart.State.Lost);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

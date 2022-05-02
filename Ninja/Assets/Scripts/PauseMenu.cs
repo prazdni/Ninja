@@ -1,5 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class PauseMenu : MonoBehaviour
         Pause,
         EndGame
     }
+
+    public List<Image> bodyPartsImages;
 
     [SerializeField] TMP_Text _pauseText;
     [SerializeField] TMP_Text _gameOverText;
