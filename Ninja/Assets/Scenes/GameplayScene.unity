@@ -372,6 +372,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7105148810976520199}
     - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
+      propertyPath: _enemiesSpeedMax
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
+      propertyPath: _enemiesSpeedMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463158214176872825, guid: 27814bb355f8c7146809e12542cdb422, type: 3}
       propertyPath: bodyPartsManager
       value: 
       objectReference: {fileID: 1153998010}

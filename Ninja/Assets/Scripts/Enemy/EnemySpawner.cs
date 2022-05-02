@@ -17,6 +17,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] EndGameManager _endGameManager;
     [SerializeField] int _enemiesToSpawnMin;
     [SerializeField] int _enemiesToSpawnMax;
+    [SerializeField] float _enemiesSpeedMin;
+    [SerializeField] float _enemiesSpeedMax;
 
     float _currentDuration;
     bool _timerEnded;
@@ -94,12 +96,15 @@ public class EnemySpawner : MonoBehaviour
             enemy = enemies[availibleEnemyIndex];
             enemies[availibleEnemyIndex].gameObject.transform.position = spawnPoints[randomSpawnPointIndex].position;
             enemies[availibleEnemyIndex].gameObject.SetActive(true);
+
         }
         else
         {
             enemy = InstantiateEnemy(spawnPoints[randomSpawnPointIndex]);
         }
-        enemy.SpawnEnemy();
+
+        enemy.moveSpeed = Random.Range(_enemiesSpeedMin, _enemiesSpeedMax);
+        enemy.OnSpawnEnemy();
 
         _lastSpawnPointIndex = randomSpawnPointIndex;
     }
@@ -138,23 +143,25 @@ public class EnemySpawner : MonoBehaviour
                 switch (_currentDifficultyIndex)
                 {
                     case 1:
-                        RaiseDifficulty(-0.5f, 0, 1);
+                        RaiseDifficulty(-0.5f, 0, 0, 0f, 1f);
                         break;
                     case 2:
-                        RaiseDifficulty(-0.5f, 1, 1);
+                        RaiseDifficulty(-0.5f, 0, 0, 0f, 1f);
                         break;
                     case 3:
-                        RaiseDifficulty(-0.5f, 1, 0);
+                        RaiseDifficulty(-0.5f, 0, 0, 0f, 1f);
                         break;
                 }
             }
         }
     }
 
-    private void RaiseDifficulty(float durationBetweenSpawnsAdd, int enemiesToSpawnMinAdd, int enemiesToSpawnMaxAdd) 
+    private void RaiseDifficulty(float durationBetweenSpawnsAdd, int enemiesToSpawnMinAdd, int enemiesToSpawnMaxAdd, float enemiesSpeedMinAdd, float enemiesSpeedMaxAdd) 
     {
         _durationBetweenSpawns += durationBetweenSpawnsAdd;
         _enemiesToSpawnMin += enemiesToSpawnMinAdd;
         _enemiesToSpawnMax += enemiesToSpawnMaxAdd;
+        _enemiesSpeedMin += enemiesSpeedMinAdd;
+        _enemiesSpeedMax += enemiesSpeedMaxAdd;
     }
 }

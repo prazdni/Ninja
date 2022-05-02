@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour
         _initialSpawnPoint = spawnPoint;
     }
 
-    public void SpawnEnemy()
+    public void OnSpawnEnemy()
     {
         _enemyMovementController.SetMovement();
     }
