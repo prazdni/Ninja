@@ -44,8 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3cece6f08543da9a14e624b746f296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
   _surikenController: {fileID: 0}
   _characterController: {fileID: 0}
   _speed: 10
-  _maxDistance: 5
+  _maxDistance: 4
