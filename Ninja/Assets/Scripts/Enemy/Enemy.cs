@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
     public void Kill()
     {
         _enemyMovementController.UnsetMovement();
-        _bodyInteractionManager.Unpick(_targetBodyPart);
+        _bodyInteractionManager.Unpick(_targetBodyPart, true);
         _enemyState = EnemyState.StandingStill;
         _targetBodyPart = null;
     }
@@ -119,7 +119,7 @@ public class Enemy : MonoBehaviour
         if ((transform.position - _initialSpawnPoint.position).magnitude < 0.1f)
         {
             _enemyState = EnemyState.GoneAway;
-            _bodyInteractionManager.Unpick(_targetBodyPart);
+            _bodyInteractionManager.Unpick(_targetBodyPart, false);
         }
     }
 

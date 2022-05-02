@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _surikenController: {fileID: 0}
-  _characterController: {fileID: 0}
+  _mainCharacter: {fileID: 0}
   _speed: 10
   _maxDistance: 4
