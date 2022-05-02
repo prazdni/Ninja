@@ -26,9 +26,15 @@ public class EndGameManager : MonoBehaviour
             return;
 
         if (_currentDuration < _duration)
+        {
             _currentDuration += Time.deltaTime;
+            _image.fillAmount = _currentDuration / _duration;
+        }
         else
+        {
             _timerEnded = true;
+
+        }
 
         if (_timerEnded && !_timerActionInvoked)
         {
@@ -36,7 +42,7 @@ public class EndGameManager : MonoBehaviour
             _timerActionInvoked = true;
         }
 
-        if (!_allBodyPartsLost) 
+        if (!_allBodyPartsLost)
         {
             int lostParts = 0;
             foreach (BodyPart bodyPart in _bodyPartsManager.bodyParts)
@@ -55,7 +61,7 @@ public class EndGameManager : MonoBehaviour
             }
         }
 
-        if (_allBodyPartsLost && !_allBodyPartsLostActionInvoked) 
+        if (_allBodyPartsLost && !_allBodyPartsLostActionInvoked)
         {
             OnAllBodyPartsLost?.Invoke();
             _allBodyPartsLostActionInvoked = true;
