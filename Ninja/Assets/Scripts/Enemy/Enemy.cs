@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ public class Enemy : MonoBehaviour
     public float moveSpeed;
 
     [SerializeField] EnemyBodyInteractionManager _bodyInteractionManager;
-    [SerializeField] EnemyMovementController _enemyMovementController;
+    [SerializeField] EnemyBehaviourController _enemyBehaviourController;
     EnemySpawner _enemySpawner;
     Transform _initialSpawnPoint;
     BodyPart _targetBodyPart;
@@ -51,7 +50,7 @@ public class Enemy : MonoBehaviour
 
     public void Kill()
     {
-        _enemyMovementController.UnsetMovement();
+        _enemyBehaviourController.UnsetMovement();
         _bodyInteractionManager.Unpick(_targetBodyPart, true);
         _enemyState = EnemyState.StandingStill;
         _targetBodyPart = null;
@@ -70,7 +69,7 @@ public class Enemy : MonoBehaviour
 
     public void OnSpawnEnemy()
     {
-        _enemyMovementController.SetMovement();
+        _enemyBehaviourController.SetMovement();
     }
 
     void SetTargetBodyPart(BodyPart bodyPart)

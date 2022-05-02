@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1.25
   _bodyInteractionManager: {fileID: 2206971733317658846}
-  _enemyMovementController: {fileID: 3245555605905706815}
+  _enemyBehaviourController: {fileID: 3245555605905706815}
 --- !u!1 &1501072277028594967
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5542361555933456969}
   - component: {fileID: 6763448308488511383}
-  - component: {fileID: 7150209630419314762}
+  - component: {fileID: 241631693796487779}
   - component: {fileID: 4260070805424455424}
   - component: {fileID: 2206971733317658846}
   - component: {fileID: 2530537181906293136}
@@ -126,7 +126,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 0ccc508108fa6ed4fa11b4a467d7f609, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e6f4691c2f4fb0d41bfc961f94569491, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -137,8 +137,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &7150209630419314762
-CircleCollider2D:
+--- !u!70 &241631693796487779
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -151,8 +151,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 0.99, y: 1.62}
+  m_Direction: 0
 --- !u!50 &4260070805424455424
 Rigidbody2D:
   serializedVersion: 4
@@ -216,7 +216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f672cfaec54826982e8a40967bccd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clips:
-  - {fileID: 7400000, guid: 0aa434636c826194186004488c2c6b86, type: 2}
-  - {fileID: 7400000, guid: a182b7ab7b23f1146bc3d4c291e35e2a, type: 2}
+  _behaviours:
+  - clip: {fileID: 7400000, guid: 0aa434636c826194186004488c2c6b86, type: 2}
+    sprite: {fileID: 21300000, guid: 4d121b299904a2c47acb2fdde9fecf89, type: 3}
+  - clip: {fileID: 7400000, guid: a182b7ab7b23f1146bc3d4c291e35e2a, type: 2}
+    sprite: {fileID: 21300000, guid: e6f4691c2f4fb0d41bfc961f94569491, type: 3}
+  _spriteRenderer: {fileID: 6763448308488511383}
   _animation: {fileID: 2530537181906293136}
