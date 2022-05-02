@@ -2438,6 +2438,10 @@ PrefabInstance:
       propertyPath: _enemySpawner
       value: 
       objectReference: {fileID: 2056650746}
+    - target: {fileID: 384811398050239915, guid: 57e9c7d89a638f84691d7e7247139d0c, type: 3}
+      propertyPath: _rotationSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8056271002221256016, guid: 57e9c7d89a638f84691d7e7247139d0c, type: 3}
       propertyPath: m_Name
       value: Suriken
