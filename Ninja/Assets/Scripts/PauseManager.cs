@@ -14,6 +14,7 @@ public class PauseManager : MonoBehaviour
     void Awake()
     {
         ClosePauseMenu();
+        _pauseMenu.SetBackgroundBlurInteractable(true);
 
         _endGameManager.OnTimerEnded += OpenEndGameMenu;
         _endGameManager.OnAllBodyPartsLost += OpenEndGameMenu;
@@ -45,6 +46,7 @@ public class PauseManager : MonoBehaviour
         StopTime();
         _pauseMenu.gameObject.SetActive(true);
         _pauseMenu.SetState(PauseMenu.State.EndGame);
+        _pauseMenu.SetBackgroundBlurInteractable(false);
         RefreshBodyPartsScreen();
     }
 

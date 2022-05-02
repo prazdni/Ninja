@@ -13,8 +13,9 @@ public class PauseMenu : MonoBehaviour
 
     public List<Image> bodyPartsImages;
 
-    [SerializeField] TMP_Text _pauseText;
     [SerializeField] TMP_Text _gameOverText;
+    [SerializeField] TMP_Text _pauseText;
+    [SerializeField] Button _backgroundBlurButton;
 
     public void SetState(State state)
     {
@@ -28,5 +29,10 @@ public class PauseMenu : MonoBehaviour
             case State.EndGame:
                 break;
         }
+    }
+
+    public void SetBackgroundBlurInteractable(bool isInteracrable) 
+    {
+        _backgroundBlurButton.interactable = isInteracrable;
     }
 }

@@ -335,8 +335,9 @@ MonoBehaviour:
   - {fileID: 3173613857741638708}
   - {fileID: 584329782505406806}
   - {fileID: 4241577781361074388}
-  _pauseText: {fileID: 6039779481459379056}
   _gameOverText: {fileID: 3742171140485242344}
+  _pauseText: {fileID: 6039779481459379056}
+  _backgroundBlurButton: {fileID: 178523635786736347}
 --- !u!1 &178523636771987244
 GameObject:
   m_ObjectHideFlags: 0
