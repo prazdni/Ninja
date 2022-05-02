@@ -41,7 +41,6 @@ public class BodyInteractionManager : MonoBehaviour, IBodyPartPicker
     public void Unpick(BodyPart bodyPart)
     {
         bodyPart.transform.SetParent(null);
-        bodyPart.SetState(BodyPart.State.InsideGrave);
         bodyPart.SetLocker(null);
         _bodyPart = null;
     }

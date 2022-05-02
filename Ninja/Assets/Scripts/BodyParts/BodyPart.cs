@@ -49,7 +49,7 @@ public class BodyPart : MonoBehaviour
         return state != State.Lost && _locker == null;
     }
 
-    public void RefreshState()
+    void RefreshState()
     {
         var contacts = new Collider2D[10];
         Physics2D.GetContacts(_collider2D, contacts);
@@ -68,10 +68,15 @@ public class BodyPart : MonoBehaviour
             }
         }
 
-        SetState(isBodyPartInGrave ? State.InsideGrave : (isBodyPartLost ? State.Lost : State.OutsideGrave));
+        if (isBodyPartInGrave)
+            SetState(State.InsideGrave);
+        else if (isBodyPartLost)
+            SetState(State.Lost);
+        else
+            SetState(State.OutsideGrave);
     }
 
-    public void SetState(State newState)
+    void SetState(State newState)
     {
         if (state == newState)
             return;
