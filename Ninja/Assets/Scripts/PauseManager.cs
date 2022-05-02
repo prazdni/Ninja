@@ -47,6 +47,22 @@ public class PauseManager : MonoBehaviour
         _pauseMenu.gameObject.SetActive(true);
         _pauseMenu.SetState(PauseMenu.State.EndGame);
         _pauseMenu.SetBackgroundBlurInteractable(false);
+        _pauseMenu.SetCircleFill(_endGameManager.currentDuration / _endGameManager.duration);
+        _pauseMenu.SetActivePauseText(false);
+        _pauseMenu.SetActiveSoundButton(false);
+
+        if (_endGameManager.currentDuration != _endGameManager.duration)
+        {
+            _pauseMenu.SetCircleColor(Color.red);
+            _pauseMenu.SetActiveBackToMenuButton("lose");
+            _pauseMenu.SetActiveRestartButton(true);
+        }
+        else
+        {
+            _pauseMenu.SetActiveBackToMenuButton("win");
+            _pauseMenu.SetActiveRestartButton(false);
+        }
+
         RefreshBodyPartsScreen();
     }
 
@@ -55,6 +71,11 @@ public class PauseManager : MonoBehaviour
         StopTime();
         _pauseMenu.gameObject.SetActive(true);
         _pauseMenu.SetState(PauseMenu.State.Pause);
+        _pauseMenu.SetCircleFill(_endGameManager.currentDuration / _endGameManager.duration);
+        _pauseMenu.SetActiveBackToMenuButton("pause");
+        _pauseMenu.SetActivePauseText(true);
+        _pauseMenu.SetActiveSoundButton(true);
+        _pauseMenu.SetActiveRestartButton(false);
         RefreshBodyPartsScreen();
         _isPause = true;
     }
@@ -91,22 +112,40 @@ public class PauseManager : MonoBehaviour
             switch (bodyPart.part)
             {
                 case BodyPart.Part.Head:
-                    _pauseMenu.bodyPartsImages[0].gameObject.SetActive(bodyPart.state != BodyPart.State.Lost);
+                    if(bodyPart.state == BodyPart.State.Lost)
+                        _pauseMenu.bodyPartsImages[0].sprite = _pauseMenu.headOff;
+                    else
+                        _pauseMenu.bodyPartsImages[0].sprite = _pauseMenu.headOn;
                     break;
                 case BodyPart.Part.Body:
-                    _pauseMenu.bodyPartsImages[1].gameObject.SetActive(bodyPart.state != BodyPart.State.Lost);
+                    if (bodyPart.state == BodyPart.State.Lost)
+                        _pauseMenu.bodyPartsImages[1].sprite = _pauseMenu.torsoOff;
+                    else
+                        _pauseMenu.bodyPartsImages[1].sprite = _pauseMenu.torsoOn;
                     break;
                 case BodyPart.Part.LeftHand:
-                    _pauseMenu.bodyPartsImages[2].gameObject.SetActive(bodyPart.state != BodyPart.State.Lost);
+                    if (bodyPart.state == BodyPart.State.Lost)
+                        _pauseMenu.bodyPartsImages[2].sprite = _pauseMenu.leftArmOff;
+                    else
+                        _pauseMenu.bodyPartsImages[2].sprite = _pauseMenu.leftArmOn;
                     break;
                 case BodyPart.Part.RightHand:
-                    _pauseMenu.bodyPartsImages[3].gameObject.SetActive(bodyPart.state != BodyPart.State.Lost);
+                    if (bodyPart.state == BodyPart.State.Lost)
+                        _pauseMenu.bodyPartsImages[3].sprite = _pauseMenu.rightArmOff;
+                    else
+                        _pauseMenu.bodyPartsImages[3].sprite = _pauseMenu.rightArmOn;
                     break;
                 case BodyPart.Part.LeftLeg:
-                    _pauseMenu.bodyPartsImages[4].gameObject.SetActive(bodyPart.state != BodyPart.State.Lost);
+                    if (bodyPart.state == BodyPart.State.Lost)
+                        _pauseMenu.bodyPartsImages[4].sprite = _pauseMenu.leftLegOff;
+                    else
+                        _pauseMenu.bodyPartsImages[4].sprite = _pauseMenu.leftLegOn;
                     break;
                 case BodyPart.Part.RightLeg:
-                    _pauseMenu.bodyPartsImages[5].gameObject.SetActive(bodyPart.state != BodyPart.State.Lost);
+                    if (bodyPart.state == BodyPart.State.Lost)
+                        _pauseMenu.bodyPartsImages[5].sprite = _pauseMenu.rightLegOff;
+                    else
+                        _pauseMenu.bodyPartsImages[5].sprite = _pauseMenu.rightLegOn;
                     break;
                 default:
                     break;
