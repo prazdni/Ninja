@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -65,7 +66,9 @@ public class Enemy : MonoBehaviour
 
     void FindTarget()
     {
-        foreach (BodyPart bodyPart in _enemySpawner.bodyPartsManager.bodyParts)
+        List<BodyPart> shuffledParts = _enemySpawner.bodyPartsManager.bodyParts;
+        Shuffle(shuffledParts);
+        foreach (BodyPart bodyPart in shuffledParts)
         {
             if (bodyPart.IsEnemyInteractive())
             {
@@ -90,6 +93,7 @@ public class Enemy : MonoBehaviour
         else
         {
             bodyPart.RefreshState();
+            _enemyState = EnemyState.StandingStill;
             _targetBodyPart = null;
         }
     }
@@ -102,6 +106,18 @@ public class Enemy : MonoBehaviour
             _enemyState = EnemyState.GoneAway;
             _targetBodyPart.SetState(BodyPart.State.Lost);
             _bodyInteractionManager.Unpick(_targetBodyPart);
+        }
+    }
+
+    public static void Shuffle<T>(List<T> list)
+    {
+        var rand = new System.Random();
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rand.Next(n + 1);
+            (list[k], list[n]) = (list[n], list[k]);
         }
     }
 }

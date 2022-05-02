@@ -1,8 +1,17 @@
-using System;
 using UnityEngine;
 
 public class BodyPart : MonoBehaviour
 {
+    public enum Part
+    {
+        LeftHand,
+        RightHand,
+        Head,
+        Body,
+        LeftLeg,
+        RightLeg
+    }
+
     public enum State
     {
         InsideGrave,
@@ -10,8 +19,10 @@ public class BodyPart : MonoBehaviour
         Lost
     }
 
+    public Part part => _part;
     public State state;
 
+    [SerializeField] Part _part;
     Collider2D _collider2D;
     IBodyPartPicker _locker;
 
