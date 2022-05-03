@@ -1357,6 +1357,34 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 6410700583216278656, guid: 610a96677e8214545a6d7175f9d37dc2, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 519420033}
+    - target: {fileID: 6410700583216278656, guid: 610a96677e8214545a6d7175f9d37dc2, type: 3}
+      propertyPath: audioClipArray.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410700583216278656, guid: 610a96677e8214545a6d7175f9d37dc2, type: 3}
+      propertyPath: audioClipArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9d584c2025a67d640b13ede066ae99b7, type: 3}
+    - target: {fileID: 6410700583216278656, guid: 610a96677e8214545a6d7175f9d37dc2, type: 3}
+      propertyPath: audioClipArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: a4e6ad9677246354c89cb41e1c351473, type: 3}
+    - target: {fileID: 6410700583216278656, guid: 610a96677e8214545a6d7175f9d37dc2, type: 3}
+      propertyPath: audioClipArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5e96c49d194923c4e8931a7d2a6d2b10, type: 3}
+    - target: {fileID: 6410700583216278656, guid: 610a96677e8214545a6d7175f9d37dc2, type: 3}
+      propertyPath: audioClipArray.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: e2196ec86d0c83d4abcd58c5e88284bc, type: 3}
+    - target: {fileID: 6410700583216278656, guid: 610a96677e8214545a6d7175f9d37dc2, type: 3}
+      propertyPath: audioClipArray.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 59c9cabc157df924d8905ae59ce622df, type: 3}
     - target: {fileID: 6410700583216278718, guid: 610a96677e8214545a6d7175f9d37dc2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2525,32 +2553,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1492659378 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6410700583216278719, guid: 610a96677e8214545a6d7175f9d37dc2, type: 3}
-  m_PrefabInstance: {fileID: 949724641}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1492659383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1492659378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d624a0d0792715c4591d02d9f06e914f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  audioClipArray:
-  - {fileID: 8300000, guid: de6665196db76874b9bab84c0714af4e, type: 3}
-  - {fileID: 8300000, guid: 3d4cb2afb805bb44bb7c53fad8e180d1, type: 3}
-  - {fileID: 8300000, guid: 1ed6afdaa581e8f48956252a8ca3630c, type: 3}
-  - {fileID: 8300000, guid: 66784749a25090b46bdcf214f965e276, type: 3}
-  - {fileID: 8300000, guid: 9e262490fbe122f458d9f4d1a947fb41, type: 3}
-  - {fileID: 8300000, guid: ec7cc22722a46db4bb91ae1d0ca739c6, type: 3}
-  - {fileID: 8300000, guid: 381ac453166c27740af00ff6ab08fb44, type: 3}
 --- !u!1001 &1564684100
 PrefabInstance:
   m_ObjectHideFlags: 0
