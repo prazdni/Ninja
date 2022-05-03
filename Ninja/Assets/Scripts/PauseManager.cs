@@ -12,6 +12,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] BodyPartsManager _bodyPartsManager;
 
     bool _isPause;
+    AudioSource music;
 
     void Awake()
     {
@@ -21,6 +22,7 @@ public class PauseManager : MonoBehaviour
         _introManager.OnEnded += OnSkipped;
         _endGameManager.OnTimerEnded += OpenEndGameMenu;
         _endGameManager.OnAllBodyPartsLost += OpenEndGameMenu;
+        music = GameObject.Find("Main Camera").GetComponent<AudioSource>();
     }
 
     void Start()
@@ -46,10 +48,14 @@ public class PauseManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape) && !_isPause)
         {
+            music.Pause();
+            _introManager.introWatched = false;
             OpenPauseMenu();
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && _isPause)
         {
+            music.Play();
+            _introManager.introWatched = true;
             ClosePauseMenu();
         }
     }
