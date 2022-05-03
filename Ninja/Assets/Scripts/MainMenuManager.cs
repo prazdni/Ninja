@@ -7,30 +7,25 @@ public class MainMenuManager : MonoBehaviour
 {
     float currentTime = 999f;
     bool timerActive = false;
-    public AudioSource music;
-    public AudioSource ambience;
     public Canvas canvas;
     float currentAlpha = 1f;
     float desiredAlpha = 0f;
 
-    private void Start()
-    {
-        AudioSource newAudio = gameObject.AddComponent<AudioSource>();
-        music = GameObject.Find("Main Camera").GetComponent<AudioSource>();
-        ambience = GameObject.Find("Ambience").GetComponent<AudioSource>();
-        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-    }
+
+    [SerializeField] CanvasGroup canvasGroup;
+    [SerializeField] AudioSource musicAudioSource;
+    [SerializeField] AudioSource ambienceAudioSource;
 
     private void Update()
     {
         if (timerActive)
         {
             currentTime -= 0.1f;
-            music.volume -= 0.001f;
-            ambience.volume -= 0.0001f;
+            musicAudioSource.volume -= 0.001f;
+            ambienceAudioSource.volume -= 0.0001f;
 
             currentAlpha = Mathf.MoveTowards(currentAlpha, desiredAlpha, 0.42f * Time.deltaTime);
-            canvas.GetComponent<CanvasGroup>().alpha = currentAlpha;
+            canvasGroup.alpha = currentAlpha;
         }
         if (currentTime <= 0)
         {

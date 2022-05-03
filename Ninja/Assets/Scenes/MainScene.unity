@@ -135,8 +135,8 @@ GameObject:
   - component: {fileID: 26825053}
   - component: {fileID: 26825052}
   - component: {fileID: 26825051}
-  - component: {fileID: 26825055}
   - component: {fileID: 26825056}
+  - component: {fileID: 26825055}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -240,9 +240,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338ab6d044dfe104ea93a4e7043ce196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 0}
-  ambience: {fileID: 0}
-  canvas: {fileID: 0}
+  canvas: {fileID: 26825053}
+  canvasGroup: {fileID: 26825056}
+  musicAudioSource: {fileID: 519420033}
+  ambienceAudioSource: {fileID: 1780077711}
 --- !u!225 &26825056
 CanvasGroup:
   m_ObjectHideFlags: 0
