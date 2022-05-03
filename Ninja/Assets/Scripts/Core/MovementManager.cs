@@ -137,7 +137,7 @@ public class MovementManager : MonoBehaviour
     {
         if (introWatched && dashed == false)
         {
-            audioSource.volume = 0.4f;
+            audioSource.volume = 0.53f;
             audioSource.PlayOneShot(audioClipArray[Random.Range(0, audioClipArray.Length)]);
             dashed = true;
             timeToDash = 10f;
