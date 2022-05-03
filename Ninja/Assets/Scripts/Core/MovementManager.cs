@@ -15,6 +15,8 @@ public class MovementManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] audioClipArray;
     bool introWatched = false;
+    bool dashed = false;
+    float timeToDash = 10f;
 
     void Awake()
     {
@@ -24,6 +26,12 @@ public class MovementManager : MonoBehaviour
 
     void Update()
     {
+        timeToDash -= 0.1f;
+        if (timeToDash <= 0)
+        {
+            dashed = false;
+        }
+
         if (!introWatched)
             introWatched = GameObject.Find("PauseMenuManager").GetComponent<IntroManager>().introWatched;
 
@@ -127,10 +135,12 @@ public class MovementManager : MonoBehaviour
 
     public void PlayDashAudio()
     {
-        if (introWatched)
+        if (introWatched && dashed == false)
         {
             audioSource.volume = 0.4f;
             audioSource.PlayOneShot(audioClipArray[Random.Range(0, audioClipArray.Length)]);
+            dashed = true;
+            timeToDash = 10f;
         }
     }
 }

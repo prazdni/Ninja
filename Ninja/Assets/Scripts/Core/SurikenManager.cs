@@ -25,6 +25,7 @@ public class SurikenManager : MonoBehaviour
     {
         _camera = Camera.main;
         _surikenController.gameObject.SetActive(_isSurikenToTarget);
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     void Update()
@@ -95,7 +96,6 @@ public class SurikenManager : MonoBehaviour
         {
             if (status)
             {
-                audioSource = gameObject.AddComponent<AudioSource>();
                 audioSource.volume = 1f;
                 audioSource.PlayOneShot(audioClipArray[UnityEngine.Random.Range(0, audioClipArray.Length)]);
             }

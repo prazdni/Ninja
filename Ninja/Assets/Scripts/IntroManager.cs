@@ -32,8 +32,6 @@ public class IntroManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            introMusic.Stop();
-            introWatched = true;
             _skipped = true;
             _canvas.SetActive(false);
             PlayGameAudio();
@@ -41,9 +39,11 @@ public class IntroManager : MonoBehaviour
         }
     }
 
-    void PlayGameAudio ()
+    void PlayGameAudio()
     {
         music.GetComponent<AudioSource>().Play();
         ambience.GetComponent<AudioSource>().Play();
+        introMusic.Stop();
+        introWatched = true;
     }
 }

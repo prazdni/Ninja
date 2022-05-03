@@ -13,6 +13,7 @@ public class PoofManager : MonoBehaviour
     void Awake()
     {
         _poofs = new List<Poof>();
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     public void AddPoof(Vector3 position)

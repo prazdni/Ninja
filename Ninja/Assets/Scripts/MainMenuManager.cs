@@ -23,7 +23,6 @@ public class MainMenuManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(currentTime);
         if (timerActive)
         {
             currentTime -= 0.1f;
