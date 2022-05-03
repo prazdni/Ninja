@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27427a878f10c8429c93771d4057b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _introManager: {fileID: 0}
+  _introManager: {fileID: 7715143541576372348}
   _endGameManager: {fileID: 0}
   _pauseMenu: {fileID: 0}
   _bodyPartsManager: {fileID: 0}
