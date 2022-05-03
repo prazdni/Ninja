@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,7 @@ public class PauseManager : MonoBehaviour
 {
     public bool isPause => _isPause;
 
+    [SerializeField] IntroManager _introManager;
     [SerializeField] EndGameManager _endGameManager;
     [SerializeField] PauseMenu _pauseMenu;
     [SerializeField] BodyPartsManager _bodyPartsManager;
@@ -16,18 +18,29 @@ public class PauseManager : MonoBehaviour
         ClosePauseMenu();
         _pauseMenu.SetBackgroundBlurInteractable(true);
 
+        _introManager.OnEnded += OnSkipped;
         _endGameManager.OnTimerEnded += OpenEndGameMenu;
         _endGameManager.OnAllBodyPartsLost += OpenEndGameMenu;
     }
 
+    void Start()
+    {
+        StopTime();
+        _isPause = true;
+    }
+
     void OnDestroy()
     {
+        _introManager.OnEnded -= OnSkipped;
         _endGameManager.OnTimerEnded -= OpenEndGameMenu;
         _endGameManager.OnAllBodyPartsLost -= OpenEndGameMenu;
     }
 
     void Update()
     {
+        if (!_introManager.ended)
+            return;
+
         if (_endGameManager.isTimerEnded)
             return;
 
@@ -39,6 +52,12 @@ public class PauseManager : MonoBehaviour
         {
             ClosePauseMenu();
         }
+    }
+
+    void OnSkipped()
+    {
+        StartTime();
+        _isPause = false;
     }
 
     void OpenEndGameMenu()
@@ -108,9 +127,9 @@ public class PauseManager : MonoBehaviour
         SceneManager.LoadScene("GameplayScene");
     }
 
-    private void RefreshBodyPartsScreen() 
+    private void RefreshBodyPartsScreen()
     {
-        foreach (BodyPart bodyPart in _bodyPartsManager.bodyParts) 
+        foreach (BodyPart bodyPart in _bodyPartsManager.bodyParts)
         {
             switch (bodyPart.part)
             {
