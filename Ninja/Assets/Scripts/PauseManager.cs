@@ -125,11 +125,13 @@ public class PauseManager : MonoBehaviour
 
     public void OpenMainScene()
     {
+        StartTime();
         SceneManager.LoadScene("MainScene");
     }
 
     public void RestartGame()
     {
+        StartTime();
         SceneManager.LoadScene("GameplayScene");
     }
 
