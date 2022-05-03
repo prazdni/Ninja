@@ -7,6 +7,9 @@ public class PoofManager : MonoBehaviour
 
     List<Poof> _poofs;
 
+    public AudioSource audioSource;
+    public AudioClip[] audioClipArray;
+
     void Awake()
     {
         _poofs = new List<Poof>();
@@ -14,6 +17,7 @@ public class PoofManager : MonoBehaviour
 
     public void AddPoof(Vector3 position)
     {
+        PlayPoofAudio();
         Poof poof = _poofs.Find(poof => !poof.gameObject.activeSelf);
         if (poof == null)
         {
@@ -30,5 +34,10 @@ public class PoofManager : MonoBehaviour
     public void ReturnPoof(Poof poof)
     {
         poof.gameObject.SetActive(false);
+    }
+    void PlayPoofAudio()
+    {
+        audioSource.volume = 1.5f;
+        audioSource.PlayOneShot(audioClipArray[Random.Range(0, audioClipArray.Length)]);
     }
 }
