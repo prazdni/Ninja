@@ -1130,6 +1130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 744971438}
   - component: {fileID: 744971437}
+  - component: {fileID: 744971439}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -1179,7 +1180,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fc4e823fb5679c24db5586a7ad317b07, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3991634, g: 0.48029217, b: 0.735849, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1204,6 +1205,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &744971439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744971436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420ab26e757a46e4eb1830d2797e5c3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startColor: {r: 0.4, g: 0.47843137, b: 0.7372549, a: 0}
+  endColor: {r: 1, g: 1, b: 1, a: 0}
+  _endGameManager: {fileID: 7105148810976520199}
+  _targetSpriteRenderer: {fileID: 744971437}
 --- !u!1 &783528096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,6 +1408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 951717319}
   - component: {fileID: 951717318}
+  - component: {fileID: 951717320}
   m_Layer: 0
   m_Name: Forest
   m_TagString: Untagged
@@ -1440,7 +1458,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: fdb681b8e43dc9b44b12c710e559d1f3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3991634, g: 0.48029217, b: 0.735849, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1465,6 +1483,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &951717320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951717317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420ab26e757a46e4eb1830d2797e5c3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startColor: {r: 0.4, g: 0.47843137, b: 0.7372549, a: 0}
+  endColor: {r: 1, g: 1, b: 1, a: 0}
+  _endGameManager: {fileID: 7105148810976520199}
+  _targetSpriteRenderer: {fileID: 951717318}
 --- !u!1001 &956980977
 PrefabInstance:
   m_ObjectHideFlags: 0
