@@ -51,7 +51,7 @@ public class PauseManager : MonoBehaviour
         _pauseMenu.SetActivePauseText(false);
         _pauseMenu.SetActiveSoundButton(false);
 
-        if (_endGameManager.currentDuration != _endGameManager.duration)
+        if (_endGameManager.currentDuration < _endGameManager.duration)
         {
             _pauseMenu.SetCircleColor(Color.red);
             _pauseMenu.SetActiveBackToMenuButton("lose");
@@ -103,6 +103,11 @@ public class PauseManager : MonoBehaviour
     public void OpenMainScene()
     {
         SceneManager.LoadScene("MainScene");
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("GameplayScene");
     }
 
     private void RefreshBodyPartsScreen() 
