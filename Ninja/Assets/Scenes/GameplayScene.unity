@@ -904,6 +904,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &531251211 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 178523635786736325, guid: e7d0d96036739f248ba6e4bdb2995d3a, type: 3}
+  m_PrefabInstance: {fileID: 956980977}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &531251213 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 178523635786736346, guid: e7d0d96036739f248ba6e4bdb2995d3a, type: 3}
+  m_PrefabInstance: {fileID: 956980977}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531251211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &531251216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531251211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6441780218b5fb247a91cc17ff72bc8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startColor: {r: 0.4, g: 0.47843137, b: 0.7372549, a: 0}
+  endColor: {r: 1, g: 1, b: 1, a: 0}
+  _endGameManager: {fileID: 7105148810976520199}
+  _targetImage: {fileID: 531251213}
 --- !u!1 &640001935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,7 +1231,7 @@ Transform:
   m_GameObject: {fileID: 744971436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1620,7 +1652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1245700054523429468, guid: e7d0d96036739f248ba6e4bdb2995d3a, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1290888474484903218, guid: e7d0d96036739f248ba6e4bdb2995d3a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1655,6 +1687,10 @@ PrefabInstance:
       value: OpenMainScene
       objectReference: {fileID: 0}
     - target: {fileID: 3733831362861989497, guid: e7d0d96036739f248ba6e4bdb2995d3a, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707000747384638408, guid: e7d0d96036739f248ba6e4bdb2995d3a, type: 3}
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}

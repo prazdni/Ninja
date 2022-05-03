@@ -49,7 +49,6 @@ public class PauseManager : MonoBehaviour
         _pauseMenu.SetBackgroundBlurInteractable(false);
         _pauseMenu.SetCircleFill(_endGameManager.currentDuration / _endGameManager.duration);
         _pauseMenu.SetActivePauseText(false);
-        _pauseMenu.SetActiveSoundButton(false);
 
         if (_endGameManager.currentDuration < _endGameManager.duration)
         {
@@ -74,7 +73,6 @@ public class PauseManager : MonoBehaviour
         _pauseMenu.SetCircleFill(_endGameManager.currentDuration / _endGameManager.duration);
         _pauseMenu.SetActiveBackToMenuButton("pause");
         _pauseMenu.SetActivePauseText(true);
-        _pauseMenu.SetActiveSoundButton(true);
         _pauseMenu.SetActiveRestartButton(false);
         RefreshBodyPartsScreen();
         _isPause = true;

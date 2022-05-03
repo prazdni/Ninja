@@ -33,7 +33,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] Button pauseBackToMenuButton;
     [SerializeField] Button winScreenBackToMenuButton;
     [SerializeField] Button looseScreenBackToMenuButton;
-    [SerializeField] Button _soundButton;
     [SerializeField] Button _restartButton;
 
     public void SetState(State state)
@@ -89,11 +88,6 @@ public class PauseMenu : MonoBehaviour
     public void SetActivePauseText(bool isActive) 
     {
         _pauseText.gameObject.SetActive(isActive);
-    }
-
-    public void SetActiveSoundButton(bool isActive)
-    {
-        _soundButton.gameObject.SetActive(isActive);
     }
 
     public void SetActiveRestartButton(bool isActive)
