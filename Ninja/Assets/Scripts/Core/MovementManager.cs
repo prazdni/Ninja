@@ -13,10 +13,15 @@ public class MovementManager : MonoBehaviour
     bool _needMoveTowards;
     bool _isDashing;
 
+    public AudioSource audioSource;
+    public AudioClip[] audioClipArray;
+
     void Awake()
     {
         //_dashTrail.enabled = false;
         _camera = Camera.main;
+        audioSource = gameObject.AddComponent<AudioSource>();
+
     }
 
     void Update()
@@ -80,6 +85,7 @@ public class MovementManager : MonoBehaviour
     void Dash()
     {
         transform.position = Vector2.MoveTowards(transform.position, _newCharacterPosition, _dashSpeed * Time.deltaTime);
+        PlayDashAudio();
         if ((_newCharacterPosition - (Vector2) transform.position).magnitude < 0.1f)
         {
             //_dashTrail.enabled = false;
@@ -119,5 +125,11 @@ public class MovementManager : MonoBehaviour
     Vector2 DetermineEndPointPosition(Vector2 dir)
     {
         return ((Vector2)transform.position + dir * _dashDistance);
+    }
+
+    public void PlayDashAudio()
+    {
+        audioSource.volume = 0.7f;
+        audioSource.PlayOneShot(audioClipArray[Random.Range(0, audioClipArray.Length)]);
     }
 }
