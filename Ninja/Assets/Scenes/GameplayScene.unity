@@ -1008,6 +1008,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 949724644}
     - target: {fileID: 8826138786379492005, guid: ef8f3d74c23403f47af9ff7be43c3582, type: 3}
+      propertyPath: _trailRenderer
+      value: 
+      objectReference: {fileID: 1712979620}
+    - target: {fileID: 8826138786379492005, guid: ef8f3d74c23403f47af9ff7be43c3582, type: 3}
       propertyPath: _surikenController
       value: 
       objectReference: {fileID: 1712979619}
@@ -2802,6 +2806,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b82ae4a9921d4f0ab85e632bfe139945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!96 &1712979620 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 917517897409160018, guid: 57e9c7d89a638f84691d7e7247139d0c, type: 3}
+  m_PrefabInstance: {fileID: 1712979617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1740724674
 PrefabInstance:
   m_ObjectHideFlags: 0
