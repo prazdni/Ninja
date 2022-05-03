@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Poof : MonoBehaviour
 {
-    [SerializeField] Animation _animation;
+    [SerializeField] CustomPufAnimation _animation;
     PoofManager _poofManager;
 
     public void SetPoofManager(PoofManager poofManager)

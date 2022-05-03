@@ -4,6 +4,7 @@ using System.Collections;
 
 public class SurikenManager : MonoBehaviour
 {
+    [SerializeField] TrailRenderer _trailRenderer;
     [SerializeField] SurikenController _surikenController;
     [SerializeField] Transform _mainCharacter;
     [SerializeField] float _speed;
@@ -36,6 +37,7 @@ public class SurikenManager : MonoBehaviour
             _needStartThrowSuriken = false;
             _isSurikenToTarget = true;
             _surikenController.transform.position = _mainCharacter.position + _mainCharacter.forward;
+            _trailRenderer.Clear();
             _surikenController.gameObject.SetActive(_isSurikenToTarget);
             _endPointPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction = (_endPointPosition - (Vector2) _mainCharacter.position).normalized * _maxDistance;

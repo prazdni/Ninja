@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2910968172912859160}
   - component: {fileID: 2910968172912859161}
-  - component: {fileID: 2910968172912859175}
   - component: {fileID: 2910968172912859174}
+  - component: {fileID: 1294337881794868808}
   m_Layer: 0
   m_Name: Poof
   m_TagString: BodyPart
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2910968172912859163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: -2.48, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 0.8771622, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4787c5f2593edbc4591154378a122f35, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86,22 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!111 &2910968172912859175
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2910968172912859163}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 9ac99368132c7aa4db817f670d5df68a, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 9ac99368132c7aa4db817f670d5df68a, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &2910968172912859174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,4 +98,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94602159c1154bb3bac7762b8ede41d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: {fileID: 2910968172912859175}
+  _animation: {fileID: 1294337881794868808}
+--- !u!114 &1294337881794868808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2910968172912859163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8b2792015f45bb85f48244738524b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 2910968172912859161}
+  _sprites:
+  - {fileID: 21300000, guid: 4787c5f2593edbc4591154378a122f35, type: 3}
+  - {fileID: 21300000, guid: 97ee9c5866633b746a4e310e9261b3c3, type: 3}
+  - {fileID: 21300000, guid: 139384772bef6474784b2368428ed6f9, type: 3}
+  _between: 0.1
