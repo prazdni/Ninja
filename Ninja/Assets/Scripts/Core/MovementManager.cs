@@ -5,7 +5,6 @@ public class MovementManager : MonoBehaviour
     [SerializeField] float _speed;
     [SerializeField] float _dashSpeed;
     [SerializeField] float _dashDistance;
-    [SerializeField] TrailRenderer _dashTrail;
     [SerializeField] Animator _animator;
 
     Camera _camera;
@@ -18,7 +17,6 @@ public class MovementManager : MonoBehaviour
 
     void Awake()
     {
-        //_dashTrail.enabled = false;
         _camera = Camera.main;
         audioSource = gameObject.AddComponent<AudioSource>();
 
@@ -46,15 +44,13 @@ public class MovementManager : MonoBehaviour
 
         _animator.SetFloat("Run", Mathf.Abs(verticalAxis) + Mathf.Abs(horizontalAxis));
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Vector2 dir = RecognizeDash(verticalAxis, horizontalAxis);
             if (dir != Vector2.zero)
             {
                 _newCharacterPosition = DetermineEndPointPosition(dir);
                 _newCharacterPosition = GetClampedByScreenPosition(_newCharacterPosition);
-                //_dashTrail.enabled = true;
-                //_dashTrail.Clear();
                 _isDashing = true;
             }
         }
@@ -88,7 +84,6 @@ public class MovementManager : MonoBehaviour
         PlayDashAudio();
         if ((_newCharacterPosition - (Vector2) transform.position).magnitude < 0.1f)
         {
-            //_dashTrail.enabled = false;
             _isDashing = false;
         }
     }
