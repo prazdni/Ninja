@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections;
 
 public class SurikenManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class SurikenManager : MonoBehaviour
     bool _needStartThrowSuriken;
     bool _isSurikenToTarget;
     bool _isSurikenFromTarget;
+
+    public AudioSource audioSource;
+    public AudioClip[] audioClipArray;
 
     void Awake()
     {
@@ -37,6 +41,7 @@ public class SurikenManager : MonoBehaviour
             Vector2 direction = (_endPointPosition - (Vector2) _mainCharacter.position).normalized * _maxDistance;
             _endPointPosition = (Vector2) _mainCharacter.position + direction;
             _distance = ((Vector2)_surikenController.transform.position - _endPointPosition).magnitude;
+            PlaySurikenAudio(true);
         }
 
         if (_isSurikenToTarget)
@@ -65,6 +70,7 @@ public class SurikenManager : MonoBehaviour
     {
         _isSurikenFromTarget = false;
         _surikenController.gameObject.SetActive(false);
+        PlaySurikenAudio(false);
     }
 
     float ToTargetFormula(float x)
@@ -75,5 +81,19 @@ public class SurikenManager : MonoBehaviour
     float FromTargetFormula(float x)
     {
         return 1 / x;
+    }
+
+    void PlaySurikenAudio(bool status)
+    {
+        if (status)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.volume = 1f;
+            audioSource.PlayOneShot(audioClipArray[UnityEngine.Random.Range(0, audioClipArray.Length)]);
+        }
+        if (!status)
+        {
+            audioSource.Stop();
+        }
     }
 }
