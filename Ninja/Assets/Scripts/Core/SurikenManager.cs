@@ -19,6 +19,7 @@ public class SurikenManager : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip[] audioClipArray;
+    bool introWatched = false;
 
     void Awake()
     {
@@ -28,6 +29,9 @@ public class SurikenManager : MonoBehaviour
 
     void Update()
     {
+        if (!introWatched)
+            introWatched = GameObject.Find("PauseMenuManager").GetComponent<IntroManager>().introWatched;
+
         if (!_isSurikenToTarget && !_isSurikenFromTarget)
             if (Input.GetMouseButtonDown(0))
                 _needStartThrowSuriken = true;
@@ -87,15 +91,16 @@ public class SurikenManager : MonoBehaviour
 
     void PlaySurikenAudio(bool status)
     {
-        if (status)
+        if (introWatched)
         {
-            audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.volume = 1f;
-            audioSource.PlayOneShot(audioClipArray[UnityEngine.Random.Range(0, audioClipArray.Length)]);
-        }
-        if (!status)
-        {
-            audioSource.Stop();
+            if (status)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+                audioSource.volume = 1f;
+                audioSource.PlayOneShot(audioClipArray[UnityEngine.Random.Range(0, audioClipArray.Length)]);
+            }
+            if (!status)
+                audioSource.Stop();
         }
     }
 }

@@ -14,16 +14,19 @@ public class MovementManager : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip[] audioClipArray;
+    bool introWatched = false;
 
     void Awake()
     {
         _camera = Camera.main;
         audioSource = gameObject.AddComponent<AudioSource>();
-
     }
 
     void Update()
     {
+        if (!introWatched)
+            introWatched = GameObject.Find("PauseMenuManager").GetComponent<IntroManager>().introWatched;
+
         if (_isDashing)
         {
             Dash();
@@ -124,7 +127,10 @@ public class MovementManager : MonoBehaviour
 
     public void PlayDashAudio()
     {
-        audioSource.volume = 0.7f;
-        audioSource.PlayOneShot(audioClipArray[Random.Range(0, audioClipArray.Length)]);
+        if (introWatched)
+        {
+            audioSource.volume = 0.4f;
+            audioSource.PlayOneShot(audioClipArray[Random.Range(0, audioClipArray.Length)]);
+        }
     }
 }
